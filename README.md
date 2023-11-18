@@ -22,9 +22,16 @@ several different models such as logistic regression, k- nearest
 neighbours (knn), and decision tree. The logistic regression model was
 most accurate and the knn model was second best. We attempted to
 optimize the hyperparameters of the knn model to see if we could make it
-as accurate as the logistic regression in predicting diabetes. .
+as accurate as the logistic regression in predicting diabetes.
 
--- results summary
+At the end we evaluated our following best performing models based on accuracy,
+precision, recall, and AUC-ROC score using the test dataset:
+- logistic regression model
+- k- nearest neighbours (knn) with n_neighbours = 100
+Based on the evaluation metrics, the Logistic Regression model performs better
+than the K-Nearest Neighbors model on the provided test dataset. Considering
+these results and the fact that Logistic Regression also offers interpretability
+of feature coefficients, we decided to recommend the logistic regression model.
 
 The data set used for this project was created through funding from the
 CDC to "better understand the relationship between lifestyle and
