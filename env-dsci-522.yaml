@@ -1,7 +1,7 @@
 # Install this conda environment with the following command:
 # conda env create -f env-dsci-522.yaml
 
-name: '522'
+name: Diabetes Prediction
 channels:
     - conda-forge
     - anaconda
