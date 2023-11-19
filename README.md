@@ -1,9 +1,3 @@
----
-editor_options: 
-  markdown: 
-    wrap: 72
----
-
 # DSCI_522_Group2
 
 Members: Angela Chen, Ella Hein, Scout McKee, and Sharon Voon.
