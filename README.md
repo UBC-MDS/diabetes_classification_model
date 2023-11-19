@@ -1,3 +1,5 @@
+# Diabetes Classification Models
+
 # DSCI_522_Group2
 
 Members: Angela Chen, Ella Hein, Scout McKee, and Sharon Voon.
@@ -13,15 +15,15 @@ Milestone 1 project for DSCI 522.
 
 In this project, we try to create models for predicting diabetes. We try
 several different models such as logistic regression, k- nearest
-neighbours (knn), and decision tree. The logistic regression model was
-most accurate and the knn model was second best. We attempted to
-optimize the hyperparameters of the knn model to see if we could make it
+neighbours (k-nn), and decision tree. The logistic regression model was
+most accurate and the k-nn model was second best. We attempted to
+optimize the hyperparameters of the k-nn model to see if we could make it
 as accurate as the logistic regression in predicting diabetes.
 
 At the end we evaluated our following best performing models based on accuracy,
 precision, recall, and AUC-ROC score using the test dataset:
 - logistic regression model
-- k- nearest neighbours (knn) with n_neighbours = 100
+- k- nearest neighbours (k-nn) with n_neighbours = 100
 Based on the evaluation metrics, the Logistic Regression model performs better
 than the K-Nearest Neighbors model on the provided test dataset. Considering
 these results and the fact that Logistic Regression also offers interpretability
@@ -57,7 +59,7 @@ conda activate Diabetes_Prediction
 jupyter lab 
 ```
 
-Open `analysis.ipynb` in Jupyter Lab and under the "Kernel" menu click
+Open `diabetes_classification_model_report.ipynb` in Jupyter Lab and under the "Kernel" menu click
 "Restart Kernel and Run All Cells...".
 
 ## Important note on obtaining the dataset
@@ -91,7 +93,6 @@ provide attribution and link to this webpage.
 
 ## References
 
-::: {#refs .hanging-indent}
 CDC. 2014. "CDC Diabetes Health Indicators." University of California,
 Irvine, School of Information; Computer Sciences. Retrieved November
 14th 2023 from
@@ -100,4 +101,3 @@ Irvine, School of Information; Computer Sciences. Retrieved November
 Sapra A, Bhandari P. Diabetes. [Updated 2023 Jun 21]. In: StatPearls
 [Internet]. Treasure Island (FL): StatPearls Publishing; 2023
 Jan-.Available from: <https://www.ncbi.nlm.nih.gov/books/NBK551501/>
-:::
