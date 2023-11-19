@@ -93,11 +93,21 @@ provide attribution and link to this webpage.
 
 ## References
 
-CDC. 2014. "CDC Diabetes Health Indicators." University of California,
-Irvine, School of Information; Computer Sciences. Retrieved November
-14th 2023 from
-<https://archive.ics.uci.edu/dataset/891/cdc+diabetes+health+indicators>
+Centers for Disease Control and Prevention. (2014). CDC Diabetes Health 
+Indicators. University of California, Irvine, School of Information; 
+Computer Sciences. Retrieved November 14, 2023, from 
+https://archive.ics.uci.edu/dataset/891/cdc+diabetes+health+indicators
 
-Sapra A, Bhandari P. Diabetes. [Updated 2023 Jun 21]. In: StatPearls
-[Internet]. Treasure Island (FL): StatPearls Publishing; 2023
-Jan-.Available from: <https://www.ncbi.nlm.nih.gov/books/NBK551501/>
+Sapra, A., & Bhandari, P. (2023, June 21). Diabetes. In StatPearls [Internet].
+Treasure Island (FL): StatPearls Publishing. Available from: 
+https://www.ncbi.nlm.nih.gov/books/NBK551501/
+
+VanderPlas, J., Granger, B., Heer, J., Moritz, D., Wongsuphasawat,
+K., Satyanarayan, A., ... Sievert, S. (2018). Altair: Interactive statistical
+visualizations for Python. Journal of Open Source Software, 3(32), 1057.
+
+Pedregosa, F., et al. (2011). Scikit-learn: Machine Learning in Python.
+Journal of Machine Learning Research, 12, 2825-2830.
+
+McKinney, W. (2010). Data structures for statistical computing in Python.
+Proceedings of the 9th Python in Science Conference, Volume 445.
