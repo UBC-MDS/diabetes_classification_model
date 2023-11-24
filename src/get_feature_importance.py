@@ -1,16 +1,3 @@
-# ---
-# jupyter:
-#   jupytext:
-#     text_representation:
-#       extension: .py
-#       format_name: light
-#       format_version: '1.5'
-#       jupytext_version: 1.15.1
-#   kernelspec:
-#     display_name: Python [conda env:522]
-#     language: python
-#     name: conda-env-522-py
-# ---
 
 def get_feature_importances(X_train, y_train, target_column_name):
     """
