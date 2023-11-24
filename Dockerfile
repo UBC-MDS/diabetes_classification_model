@@ -11,3 +11,4 @@ RUN conda install -y pandas=2.1.3 \
 RUN pip install vl-convert-python==1.1.0 
 
 RUN pip install pytest
+
