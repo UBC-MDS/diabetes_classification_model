@@ -1,3 +1,6 @@
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+import pandas as pd
 
 def get_feature_importances(X_train, y_train, target_column_name):
     """
