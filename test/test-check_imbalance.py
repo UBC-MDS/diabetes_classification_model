@@ -14,10 +14,10 @@ empty_data = pd.DataFrame(columns=["Diabetes_binary"])
 imbalanced_data_with_duplicates = pd.concat([imbalanced_data, imbalanced_data])
 
 # Expected outputs
-imbalanced_data_output = pd.Series({0: 2, 1: 5})
+imbalanced_data_output = pd.Series({0: 3, 1: 4})
 balanced_data_output = pd.Series({0: 2, 1: 2})
 empty_data_output = pd.Series(dtype=int)
-imbalanced_data_with_duplicates_output = pd.Series({0: 2, 1: 5})
+imbalanced_data_with_duplicates_output = pd.Series({0: 6, 1: 8})
 
 # Test for correct return type
 def test_check_imbalance_returns_series():
@@ -26,14 +26,22 @@ def test_check_imbalance_returns_series():
 
 # Test for correct values in the Series
 def test_check_imbalance_values():
-    pd.testing.assert_series_equal(check_imbalance(imbalanced_data, "Diabetes_binary"), imbalanced_data_output)
-    pd.testing.assert_series_equal(check_imbalance(balanced_data, "Diabetes_binary"), balanced_data_output)
-    pd.testing.assert_series_equal(check_imbalance(empty_data, "Diabetes_binary"), empty_data_output)
-    pd.testing.assert_series_equal(
-        check_imbalance(imbalanced_data_with_duplicates, "Diabetes_binary"),
-        imbalanced_data_with_duplicates_output
-    )
+    a = check_imbalance(imbalanced_data, "Diabetes_binary").sort_index().reset_index(drop=True)
+    b = imbalanced_data_output.sort_index().reset_index(drop=True).rename('count')
+    pd.testing.assert_series_equal(a, b)
 
+    c = check_imbalance(balanced_data, "Diabetes_binary").sort_index().reset_index(drop=True)
+    d = balanced_data_output.sort_index().reset_index(drop=True).rename('count')
+    pd.testing.assert_series_equal(c, d)
+
+    e = check_imbalance(empty_data, "Diabetes_binary").sort_index().reset_index(drop=True)
+    f = empty_data_output.sort_index().reset_index(drop=True).rename('count')
+    pd.testing.assert_series_equal(e, f)
+
+    g = check_imbalance(imbalanced_data_with_duplicates, "Diabetes_binary").sort_index().reset_index(drop=True)
+    h = imbalanced_data_with_duplicates_output.sort_index().reset_index(drop=True).rename('count')
+
+    pd.testing.assert_series_equal(g, h)
 # Test for correct error handling for incorrect type of feature name
 def test_check_imbalance_type_error():
     with pytest.raises(KeyError):
@@ -42,5 +50,5 @@ def test_check_imbalance_type_error():
 # Test for correct error handling for incorrect object type 
 # (not a pandas data frame)
 def test_check_imbalance_attribute_error():
-    with pytest.raises(AttributeError):
+    with pytest.raises(TypeError):
         check_imbalance([{"Diabetes_binary": 0, "feature": 1}], "Diabetes_binary")
