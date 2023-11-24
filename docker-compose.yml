@@ -5,3 +5,4 @@ services:
       - .:/home/jovyan/work
     ports:
       - 8888:8888
+    platform: linux/amd64
