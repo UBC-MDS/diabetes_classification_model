@@ -1,4 +1,3 @@
-# just to isolate the code to avoid merge conflict for now and will merge together later
 import pandas as pd
 
 def check_imbalance(df, feat_name):
@@ -29,10 +28,6 @@ def check_imbalance(df, feat_name):
     the count of each class in the specified feature.
 
     """
-    # Step 1: Remove duplicate rows
-    df.drop_duplicates(inplace=True)
-
-    # Step 2: Calculate the count of each class in the specified feature
     feature_counts = df[feat_name].value_counts()
 
     return feature_counts
