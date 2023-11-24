@@ -1,0 +1,12 @@
+services:
+  jupyter:
+    image:  svoon/diabetes_classification_model
+    volumes:
+      - .:/home/jovyan/work
+    ports:
+      - 8888:8888
+    deploy:
+      resources:
+        limits:
+          memory: 5G
+    platform: linux/amd64

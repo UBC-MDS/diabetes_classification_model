@@ -6,4 +6,9 @@ RUN conda install -y pandas=2.1.3 \
     altair=5.1.2 \
     scikit-learn=1.3.2 \
     vegafusion=1.4.5 \
-    vl-convert-python=1.1.0
+    vegafusion-python-embed 
+
+RUN pip install vl-convert-python==1.1.0 
+
+RUN pip install pytest
+
