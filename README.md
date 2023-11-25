@@ -38,7 +38,7 @@ The final report can be found [here](https://github.com/UBC-MDS/diabetes_classif
 
 ## Dependencies
 
-This project uses Docker image that is built on  quay.io/jupyter/minimal-notebook:2023-11-19. Additional dependencies can be found 
+This project uses Docker image that is built on quay.io/jupyter/minimal-notebook:2023-11-19. Additional dependencies can be found 
 in the DockerFile as well as the env-dsci-522.yaml.
 
 ## Usage
