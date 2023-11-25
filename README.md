@@ -1,15 +1,8 @@
 # Diabetes Classification Models
 
-# DSCI_522_Group2
-
 Members: Angela Chen, Ella Hein, Scout McKee, and Sharon Voon.
 
-## Contents
-
--   analysis.ipynb: Our data analysis file
--   data/: A directory containing csv's of all data used for analysis
-
-Milestone 1 project for DSCI 522.
+Milestone 2 project for DSCI 522.
 
 ## About
 
@@ -41,55 +34,73 @@ for each patient.
 
 ## Report
 
-The final report can be found [here](LINK%20TO%20THE%20HTML).
+The final report can be found [here](https://github.com/UBC-MDS/diabetes_classification_model/blob/main/doc/diabetes_classification_model_report.pdf).
 
 ## Usage
 
-First time running the project, run the following from the root of this
-repository:
+This analysis can be run with either Docer or Virtual Environment through the respective set-up instructions provided below.
+
+### Set up:
+
+### Virtual Environment:
+
+1. Clone the GitHub repository for this project.
+2. Run the following from the root of this repository:
 
 ``` bash
 conda env create --file env-dsci-522.yaml
 ```
 
-To run the analysis, run the following from the root of this repository:
+### Docker:
+
+1. Clone the GitHub repository for this project.
+2. Install Docker [here](https://www.docker.com/get-started/) and  follow the given instruction.
+3. Launch  Docker on your local computer.
+
+## Running the Analysis
+
+### Virtual Environment:
+
+1. To run the analysis, run the following from the root of this repository:
 
 ``` bash
 conda activate Diabetes_Prediction
 jupyter lab 
 ```
 
-Open `diabetes_classification_model_report.ipynb` in Jupyter Lab and under the "Kernel" menu click
+2. Open `diabetes_classification_model.ipynb` in Jupyter Lab that is located inside the src folder. Under the "Kernel" menu click
+"Restart Kernel and Run All Cells...".
+
+
+### Docker:
+
+1. To run the analysis, run the following from the root of this repository:
+```         
+docker compose up
+```
+
+2. Click on the link provided in the terminal that starts with `http://127.0.0.1:8888/lab` or copy and paste it into your web browser.
+
+3. Navigate into the 'work/src' folder and open the jupyter notebook named 'diabetes_classification_model.ipynb. under the "Kernel" menu click
 "Restart Kernel and Run All Cells...".
 
 ## Important note on obtaining the dataset
 
-The UC Irvine Machine Learning Repository gives a link to download the
-dataset off Kaggle. Since this requires authenication, here is a more
-direct way to obtain the data form UC Irvine without using Kaggle.
+The UC Irvine Machine Learning Repository gives a link to download the dataset off Kaggle. Since this requires authenication, here is a more direct way to obtain the data form UC Irvine without using Kaggle.
 
 On the command line run: pip install ucimlrepo
 
-Then paste the following code at the beginning of the analysis document,
-replacing the current section which reads in the data.
+Then paste the following code at the beginning of the analysis document, replacing the current section which reads in the data.
 
-from ucimlrepo import fetch_ucirepo \# fetch dataset
-cdc_diabetes_health_indicators = fetch_ucirepo(id=891) \# data (as
-pandas dataframes) X = cdc_diabetes_health_indicators.data.features y =
-cdc_diabetes_health_indicators.data.targets
-
-## Dependencies
-
--   `conda` (version 23.7.4)
--   `nb_conda_kernels` (version 2.3.1)
--   Python and packages listed in `env-dsci-522.yaml`
+from ucimlrepo import fetch_ucirepo \# fetch dataset cdc_diabetes_health_indicators = fetch_ucirepo(id=891) \# data (as pandas dataframes) X = cdc_diabetes_health_indicators.data.features y = cdc_diabetes_health_indicators.data.targets
 
 ## License
 
-The Diabetes Prediction materials here are licensed under the Creative
-Commons Attribution-NonCommercial-NoDerivs 4.0 International (CC
-BY-NC-ND 4.0 DEED) and the MIT license. If re-using/re-mixing please
-provide attribution and link to this webpage.
+The Diabetes Prediction materials here are licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 4.0 International (CC BY-NC-ND 4.0 DEED) and the MIT license. If re-used/re-mixed please provide attribution and link to this webpage.
+
+## Contributing
+
+Contributions are always welcome but please do refer to [CONTRIBUTING.md](https://github.com/UBC-MDS/diabetes_classification_model/blob/main/CONTRIBUTING.md) for more details.
 
 ## References
 
