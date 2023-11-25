@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
+import sys
+import os
 
 # Import the get_feature_importance function from the src folder
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
