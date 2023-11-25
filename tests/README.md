@@ -15,3 +15,6 @@ count the number of null values in every columns of the data frame.
 
 `get_feature_importance.py` contains the code to check if the function
 correctly gather the feature importance data correctly.
+
+`model_cross_val.py` contains the code to check if the function correctly
+returns mean and std of cross validation.
