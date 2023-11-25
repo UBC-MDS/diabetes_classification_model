@@ -36,9 +36,14 @@ for each patient.
 
 The final report can be found [here](https://github.com/UBC-MDS/diabetes_classification_model/blob/main/doc/diabetes_classification_model_report.pdf).
 
+## Dependencies
+
+This project uses Docker image that is built on quay.io/jupyter/minimal-notebook:2023-11-19. Additional dependencies can be found 
+in the DockerFile as well as the env-dsci-522.yaml.
+
 ## Usage
 
-This analysis can be run with either Docer or Virtual Environment through the respective set-up instructions provided below.
+This analysis can be run with either Docker or Virtual Environment through the respective set-up instructions provided below.
 
 ### Set up:
 
@@ -83,6 +88,14 @@ docker compose up
 
 3. Navigate into the 'work/src' folder and open the jupyter notebook named 'diabetes_classification_model.ipynb. under the "Kernel" menu click
 "Restart Kernel and Run All Cells...".
+
+## Running the tests
+
+The test written for each function is stored in the tests folder. To run the tests, run the following from the root of this repository:
+
+``` bash
+pytest tests/* 
+```
 
 ## Important note on obtaining the dataset
 
