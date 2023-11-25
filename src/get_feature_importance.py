@@ -36,7 +36,7 @@ def get_feature_importances(X_train, y_train, target_column_name):
     lr.fit(X_train_scaled, y_train)
 
     # Grab feature columns
-    feature_columns = train_df.drop(columns=[target_column_name]).columns
+    feature_columns = X_train.drop(columns=[target_column_name]).columns
     
     # Create a DataFrame to display coefficients
     data = {"features": feature_columns, "coefficients": lr.coef_[0]}
