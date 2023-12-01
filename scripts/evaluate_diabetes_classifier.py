@@ -7,6 +7,7 @@ import os
 import sys
 import pandas as pd
 import pickle
+from sklearn import set_config
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, roc_auc_score
@@ -15,38 +16,44 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 @click.command()
 @click.option('--models', type=dict, help="Path to directory where optimized knn model and decision tree model object") 
-@click.option('--X_train', type=str, help='Path to X_Train')
-@click.option('--y_train', type=str, help="Path to y_train")
-@click.option('--X_test', type=str, help="Path to X_test")
-@click.option('--y_test',type=str, help="Path to y_test")
+@click.option('--train_df', type=str, help='Path to train_df')
+@click.option('--test_df', type=str, help="Path to test_df")
+@click.option('--pipeline-from', type=str, help="Path to the folder where the fit pipeline object lives")
+@click.option('--results-to', type=str, help="Path to the folder where the result will be written to")
 
-def main(models, X_train, y_train, X_test, y_test):
+
+def main(models, train_df, test_df, pipeline_from, results_to):
     '''Evaluates the diabetes classifier on the test data 
     and saves the evaluation results.'''
+    set_config(transform_output="pandas")
+
+    #preparing the X_train, y_train, X_test, y_test
+    train_df = pd.read_csv(train_df)
+    test_df = pd.read_csv(test_df)
+    X_train = train_df.drop(['Diabetes_binary'], axis = 1)
+    y_train = train_df['Diabetes_binary']
+    X_test = test_df.drop(['Diabetes_binary'], axis = 1)
+    y_test = test_df['Diabetes_binary']
+
+    with open(pipeline_from, 'rb') as f:
+        models = pickle.load(f)
+
     final_knn = models["knn"]
     final_knn.fit(X_train, y_train)
 
     y_pred_knn = final_knn.predict(X_test)
-    accuracy = accuracy_score(y_test, y_pred_knn)
-    print(f'Accuracy of the best knn model: {accuracy}')
-
-    # Additional metrics
     print(classification_report(y_test, y_pred_knn))
     print('Confusion Matrix:\n', confusion_matrix(y_test, y_pred_knn))
-    print('AUC-ROC Score:', roc_auc_score(y_test, final_knn.predict_proba(X_test)[:, 1]))
 
     final_DT = models["decision tree"]
     final_DT.fit(X_train, y_train)
 
     y_pred_DT = final_DT.predict(X_test)
-    accuracy = accuracy_score(y_test, y_pred_DT)
-    print(f'Accuracy of Decision tree model: {accuracy}')
 
-    # Additional metrics
     print(classification_report(y_test, y_pred_DT))
     print('Confusion Matrix:\n', confusion_matrix(y_test, y_pred_DT))
-    print('AUC-ROC Score:', roc_auc_score(y_test, 
-                                        final_DT.predict_proba(X_test)[:, 1]))
+    
+    confusion_matrix.to_csv(os.path.join(results_to, "confusion_matrix.csv"))
 
 if __name__ == '__main__':
     main()
