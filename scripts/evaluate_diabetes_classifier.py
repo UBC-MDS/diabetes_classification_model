@@ -20,7 +20,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 @click.option('--test_df', type=str, help="Path to test_df")
 @click.option('--knn_from', type=str, help="Path to the folder where the fit knn pipeline object lives")
 @click.option('--DT_from', type=str, help="Path to the folder where the fit Decision tree pipeline object lives")
-@click.option('--results-to', type=str, help="Path to the folder where the result will be written to")
+@click.option('--results_to', type=str, help="Path to the folder where the result will be written to")
 
 
 def main(models, train_df, test_df, knn_from, DT_from, results_to):
