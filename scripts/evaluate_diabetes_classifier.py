@@ -14,14 +14,15 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 @click.command()
-@click.option('--models', type=dict, help='Models determined after hyperparameter optimization') 
-@click.option('--X_train', type=pd.DataFrame, help='X_Train')
-@click.option('--y_train', type=pd.DataFrame, help="y_train")
-@click.option('--X_test', type=pd.DataFrame, help="X_test")
-@click.option('--y_test',type=pd.DataFrame, help="y_test")
+@click.option('--models', type=dict, help="Path to directory where optimized knn model and decision tree model object") 
+@click.option('--X_train', type=str, help='Path to X_Train')
+@click.option('--y_train', type=str, help="Path to y_train")
+@click.option('--X_test', type=str, help="Path to X_test")
+@click.option('--y_test',type=str, help="Path to y_test")
 
 def main(models, X_train, y_train, X_test, y_test):
-    
+    '''Evaluates the diabetes classifier on the test data 
+    and saves the evaluation results.'''
     final_knn = models["knn"]
     final_knn.fit(X_train, y_train)
 
