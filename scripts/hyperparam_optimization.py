@@ -4,6 +4,7 @@
 
 import click
 import os
+import sys
 import altair as alt
 import numpy as np
 import pandas as pd
@@ -15,15 +16,18 @@ from sklearn.pipeline import make_pipeline
 from sklearn.model_selection import RandomizedSearchCV
 from sklearn.metrics import fbeta_score, make_scorer
 from joblib import dump
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from src.model_cross_val import model_cross_val
 
 @click.command()
 @click.option('--training_data', type=str, help="Path to training data")
 @click.option('--preprocessor', type=str, help="Path to preprocessor object")
 @click.option('--models_to', type=str, help="Path to directory where optimized knn model and decision tree model object will be written to")
+@click.option('--table_to', type=str, help="Path to directory where crossvalidation results for optimized model will be written to")
 
-def main(training_data, preprocessor, models_to):
+def main(training_data, preprocessor, models_to, table_to):
     '''Execute hyper parameter optimization for a knn model and a decision tree model.'''
-    set_config(transform_output="pandas") #????XXXXX
+    set_config(transform_output="pandas")
 
     # read in data & preprocessor
     train_df = pd.read_csv(training_data)
@@ -41,9 +45,9 @@ def main(training_data, preprocessor, models_to):
 
     knn_search = RandomizedSearchCV(knn_pipeline, param_distributions=knn_parameter_grid, n_iter=10, n_jobs= -1, return_train_score=True) 
 
-    knn_fit = knn_search.fit(X_train, y_train) ##this might need to be search.best_estimator_ ???XXXXX
+    knn_fit = knn_search.fit(X_train, y_train)
 
-    with open(os.path.join(models_to, "knn_pipeline.pickle"), 'wb') as f: ##XXXXXXX I also need to write out the df as tables!!!
+    with open(os.path.join(models_to, "knn_pipeline.pickle"), 'wb') as f: 
         pickle.dump(knn_fit.best_estimator_, f)
     
 
@@ -59,7 +63,12 @@ def main(training_data, preprocessor, models_to):
 
     tree_fit = tree_search.fit(X_train, y_train)
 
-    pickle.dump(tree_fit.best_estimator_, open(os.path.join(models_to, "tree_model.pickle"), "wb"))##XXXXXXXshould this be .best_ XXXX???
+    pickle.dump(tree_fit.best_estimator_, open(os.path.join(models_to, "tree_model.pickle"), "wb"))
+
+    #write out df with cross val results for knn
+    models = {"knn": knn_fit.best_estimator_, "decision tree": tree_fit.best_estimator_}
+    results_df = model_cross_val(models, X_train, y_train)
+    results_df.to_csv(os.path.join(table_to,"cross_val_results.csv"))
 
 if __name__ == '__main__':
     main()
