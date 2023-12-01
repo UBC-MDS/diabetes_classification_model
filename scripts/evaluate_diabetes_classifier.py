@@ -21,7 +21,7 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 @click.option('--X_test', type=pd.DataFrame, help="X_test")
 @click.option('--y_test',type=pd.DataFrame, help="y_test")
 
-def main(id, write_to, random, split_data_to, split_ratio):
+def main(models, X_train, y_train, X_test, y_test):
     
     final_knn = models["knn"]
     final_knn.fit(X_train, y_train)
