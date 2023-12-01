@@ -2,7 +2,7 @@
 
 Members: Angela Chen, Ella Hein, Scout McKee, and Sharon Voon.
 
-Milestone 2 project for DSCI 522.
+Milestone 3 project for DSCI 522.
 
 ## About
 
@@ -34,7 +34,7 @@ for each patient.
 
 ## Report
 
-The final report can be found [here](https://github.com/UBC-MDS/diabetes_classification_model/blob/main/doc/diabetes_classification_model_report.pdf).
+The final report can be found [here](https://ubc-mds.github.io/diabetes_classification_model/doc/diabetes_classification_model_report.html).
 
 ## Dependencies
 
@@ -86,8 +86,23 @@ docker compose up
 
 2. Click on the link provided in the terminal that starts with `http://127.0.0.1:8888/lab` or copy and paste it into your web browser.
 
-3. Navigate into the 'work/src' folder and open the jupyter notebook named 'diabetes_classification_model.ipynb. under the "Kernel" menu click
-"Restart Kernel and Run All Cells...".
+3. To run the analysis, run the following commands in the terminal from the root of this repository:
+```
+# Download, drop duplicate and split data into train and test data frame
+python scripts/download_split_data.py \
+    --id=891 \
+    --write-to=data/raw \
+    --random=123 \
+    --split-data-to=data/processed \
+    --split-ratio=0.2
+
+# Perform preprocessing train data, EDA, and save plot and results
+python scripts/eda.py \
+    --train-data=data/processed/train_df.csv \
+    --preprocessor-to=results/models \
+    --fig-to=results/figures \
+    --table-to=results/tables
+```
 
 ## Running the tests
 
@@ -97,15 +112,20 @@ The test written for each function is stored in the tests folder. To run the tes
 pytest tests/* 
 ```
 
-## Important note on obtaining the dataset
+## Clean up
 
-The UC Irvine Machine Learning Repository gives a link to download the dataset off Kaggle. Since this requires authenication, here is a more direct way to obtain the data form UC Irvine without using Kaggle.
+### Virtual Environment:
+Run the following command from terminal after typing `Ctrl + C` to deactivate the virtual environment and free up the resources.
+```
+conda deactivate Diabetes_Prediction
+```
 
-On the command line run: pip install ucimlrepo
+### Docker:
 
-Then paste the following code at the beginning of the analysis document, replacing the current section which reads in the data.
-
-from ucimlrepo import fetch_ucirepo \# fetch dataset cdc_diabetes_health_indicators = fetch_ucirepo(id=891) \# data (as pandas dataframes) X = cdc_diabetes_health_indicators.data.features y = cdc_diabetes_health_indicators.data.targets
+Run the following command from terminal after typing `Ctrl + C` to shut down the container and free up the resources.
+```
+docker compose rm
+```
 
 ## License
 
