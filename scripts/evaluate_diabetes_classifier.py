@@ -28,25 +28,25 @@ def main(id, write_to, random, split_data_to, split_ratio):
 
     y_pred_knn = final_knn.predict(X_test)
     accuracy = accuracy_score(y_test, y_pred_knn)
-    print(f'Accuracy of knn model of n=100: {accuracy}')
+    print(f'Accuracy of the best knn model: {accuracy}')
 
     # Additional metrics
     print(classification_report(y_test, y_pred_knn))
     print('Confusion Matrix:\n', confusion_matrix(y_test, y_pred_knn))
     print('AUC-ROC Score:', roc_auc_score(y_test, final_knn.predict_proba(X_test)[:, 1]))
 
-    final_logistic = LogisticRegression(max_iter=1000)
-    final_logistic.fit(X_train, y_train)
+    final_DT = models["decision tree"]
+    final_DT.fit(X_train, y_train)
 
-    y_pred_log = final_logistic.predict(X_test)
+    y_pred_DT = final_DT.predict(X_test)
     accuracy = accuracy_score(y_test, y_pred_log)
-    print(f'Accuracy of logistic model: {accuracy}')
+    print(f'Accuracy of Decision tree model: {accuracy}')
 
     # Additional metrics
-    print(classification_report(y_test, y_pred_log))
-    print('Confusion Matrix:\n', confusion_matrix(y_test, y_pred_log))
+    print(classification_report(y_test, y_pred_DT))
+    print('Confusion Matrix:\n', confusion_matrix(y_test, y_pred_DT))
     print('AUC-ROC Score:', roc_auc_score(y_test, 
-                                        final_logistic.predict_proba(X_test)[:, 1]))
+                                        final_DT.predict_proba(X_test)[:, 1]))
 
 if __name__ == '__main__':
     main()
