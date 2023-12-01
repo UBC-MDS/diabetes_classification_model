@@ -1,7 +1,3 @@
-# fit_breast_cancer_classifier.py
-# author: Tiffany Timbers
-# date: 2023-11-27
-
 import click
 import os
 import sys
