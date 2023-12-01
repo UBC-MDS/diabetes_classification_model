@@ -7,7 +7,6 @@ import os
 import sys
 import pandas as pd
 import pickle
-from sklearn.metrics import accuracy_score
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, roc_auc_score
@@ -39,7 +38,7 @@ def main(models, X_train, y_train, X_test, y_test):
     final_DT.fit(X_train, y_train)
 
     y_pred_DT = final_DT.predict(X_test)
-    accuracy = accuracy_score(y_test, y_pred_log)
+    accuracy = accuracy_score(y_test, y_pred_DT)
     print(f'Accuracy of Decision tree model: {accuracy}')
 
     # Additional metrics
