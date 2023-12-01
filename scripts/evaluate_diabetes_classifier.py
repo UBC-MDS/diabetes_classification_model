@@ -18,11 +18,12 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 @click.option('--models', type=dict, help="Path to directory where optimized knn model and decision tree model object") 
 @click.option('--train_df', type=str, help='Path to train_df')
 @click.option('--test_df', type=str, help="Path to test_df")
-@click.option('--pipeline-from', type=str, help="Path to the folder where the fit pipeline object lives")
+@click.option('--knn_from', type=str, help="Path to the folder where the fit knn pipeline object lives")
+@click.option('--DT_from', type=str, help="Path to the folder where the fit Decision tree pipeline object lives")
 @click.option('--results-to', type=str, help="Path to the folder where the result will be written to")
 
 
-def main(models, train_df, test_df, pipeline_from, results_to):
+def main(models, train_df, test_df, knn_from, DT_from, results_to):
     '''Evaluates the diabetes classifier on the test data 
     and saves the evaluation results.'''
     set_config(transform_output="pandas")
@@ -35,8 +36,10 @@ def main(models, train_df, test_df, pipeline_from, results_to):
     X_test = test_df.drop(['Diabetes_binary'], axis = 1)
     y_test = test_df['Diabetes_binary']
 
-    with open(pipeline_from, 'rb') as f:
-        models = pickle.load(f)
+    with open(knn_from, 'rb') as f:
+        final_knn = pickle.load(f)
+    with open(DT_from, 'rb') as f2:
+        final_DT = pickle.load(f2)
 
     final_knn = models["knn"]
     final_knn.fit(X_train, y_train)
