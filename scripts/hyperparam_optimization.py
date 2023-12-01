@@ -15,6 +15,7 @@ from joblib import dump
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src.model_cross_val import model_cross_val
 
+
 @click.command()
 @click.option('--training_data', type=str, help="Path to training data")
 @click.option('--preprocessor', type=str, help="Path to preprocessor object")
