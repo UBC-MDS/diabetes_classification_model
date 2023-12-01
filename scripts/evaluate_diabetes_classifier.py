@@ -8,22 +8,22 @@ import sys
 import pandas as pd
 import pickle
 from sklearn.metrics import accuracy_score
-from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, roc_auc_score
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 @click.command()
-@click.option('--id', type=int, help='UCI repository ID') 
-@click.option('--write-to', type=str, help='Path to directory where raw data will be stored in')
-@click.option('--random', type=int, help="Random seed", default=123)
-@click.option('--split-data-to', type=str, help="Path to directory where split data will be stored")
-@click.option('--split-ratio',type=float, help="Ratio used to split data into test data")
+@click.option('--models', type=dict, help='Models determined after hyperparameter optimization') 
+@click.option('--X_train', type=pd.DataFrame, help='X_Train')
+@click.option('--y_train', type=pd.DataFrame, help="y_train")
+@click.option('--X_test', type=pd.DataFrame, help="X_test")
+@click.option('--y_test',type=pd.DataFrame, help="y_test")
 
 def main(id, write_to, random, split_data_to, split_ratio):
-
-    final_knn = KNeighborsClassifier(n_neighbors=100)
+    
+    final_knn = models["knn"]
     final_knn.fit(X_train, y_train)
 
     y_pred_knn = final_knn.predict(X_test)
