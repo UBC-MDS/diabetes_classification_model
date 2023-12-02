@@ -40,12 +40,12 @@ def main(training_data, preprocessor, models_to, table_to):
         "kneighborsclassifier__n_neighbors": [50, 100, 200, 300, 500]
     }
 
-    knn_search = RandomizedSearchCV(knn_pipeline, param_distributions=knn_parameter_grid, n_iter=10, n_jobs= -1, return_train_score=True) 
+    knn_search = RandomizedSearchCV(knn_pipeline, param_distributions=knn_parameter_grid, n_iter=10, n_jobs= -1, return_train_score=True, random_state=123) 
 
-    knn_fit = knn_search.fit(X_train, y_train)
+    knn_search.fit(X_train, y_train)
 
     with open(os.path.join(models_to, "knn_pipeline.pickle"), 'wb') as f: 
-        pickle.dump(knn_fit.best_estimator_, f)
+        pickle.dump(knn_search.best_estimator_, f)
     
 
     # optimize decision tree model
@@ -56,16 +56,15 @@ def main(training_data, preprocessor, models_to, table_to):
         "decisiontreeclassifier__max_depth": [5,10, 50, 100, 500, 1000]
     }
 
-    tree_search = RandomizedSearchCV(tree_pipeline, param_distributions=tree_parameter_grid, n_iter=10, n_jobs= -1, return_train_score=True) 
+    tree_search = RandomizedSearchCV(tree_pipeline, param_distributions=tree_parameter_grid, n_iter=10, n_jobs= -1, return_train_score=True, random_state = 123) 
 
-    tree_fit = tree_search.fit(X_train, y_train)
+    tree_search.fit(X_train, y_train)
 
-    pickle.dump(tree_fit.best_estimator_, open(os.path.join(models_to, "tree_model.pickle"), "wb"))
+    pickle.dump(tree_search.best_estimator_, open(os.path.join(models_to, "tree_model.pickle"), "wb"))
 
     #write out df with cross val results for knn
-    models = {"knn": knn_fit.best_estimator_, "decision tree": tree_fit.best_estimator_}
-    results_df = model_cross_val(models, X_train, y_train)
-    results_df.to_csv(os.path.join(table_to,"cross_val_results.csv"))
-
+    models = {"knn": knn_search.best_estimator_, "decision tree": tree_search.best_estimator_}
+    results_df = pd.DataFrame({"n_neighbours" : [knn_search.best_params_["kneighborsclassifier__n_neighbors"]], "max_depth" : [tree_search.best_params_['decisiontreeclassifier__max_depth']]}).reset_index(drop=True)
+    results_df.to_csv(os.path.join(table_to,"best_hyperparams.csv"))
 if __name__ == '__main__':
     main()
