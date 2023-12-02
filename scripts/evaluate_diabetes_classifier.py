@@ -15,15 +15,14 @@ from sklearn.metrics import accuracy_score, classification_report, confusion_mat
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 @click.command()
-@click.option('--models', type=dict, help="Path to directory where optimized knn model and decision tree model object") 
 @click.option('--train_df', type=str, help='Path to train_df')
 @click.option('--test_df', type=str, help="Path to test_df")
 @click.option('--knn_from', type=str, help="Path to the folder where the fit knn pipeline object lives")
-@click.option('--DT_from', type=str, help="Path to the folder where the fit Decision tree pipeline object lives")
+@click.option('--dt_from', type=str, help="Path to the folder where the fit Decision tree pipeline object lives")
 @click.option('--results_to', type=str, help="Path to the folder where the result will be written to")
 
 
-def main(models, train_df, test_df, knn_from, DT_from, results_to):
+def main(train_df, test_df, knn_from, dt_from, results_to):
     '''Evaluates the diabetes classifier on the test data 
     and saves the evaluation results.'''
     set_config(transform_output="pandas")
@@ -38,25 +37,23 @@ def main(models, train_df, test_df, knn_from, DT_from, results_to):
 
     with open(knn_from, 'rb') as f:
         final_knn = pickle.load(f)
-    with open(DT_from, 'rb') as f2:
+    with open(dt_from, 'rb') as f2:
         final_DT = pickle.load(f2)
 
-    final_knn = models["knn"]
     final_knn.fit(X_train, y_train)
 
     y_pred_knn = final_knn.predict(X_test)
-    print(classification_report(y_test, y_pred_knn))
-    print('Confusion Matrix:\n', confusion_matrix(y_test, y_pred_knn))
 
-    final_DT = models["decision tree"]
     final_DT.fit(X_train, y_train)
 
     y_pred_DT = final_DT.predict(X_test)
-
-    print(classification_report(y_test, y_pred_DT))
-    print('Confusion Matrix:\n', confusion_matrix(y_test, y_pred_DT))
     
-    confusion_matrix.to_csv(os.path.join(results_to, "confusion_matrix.csv"))
+    confusion_matrix_knn = confusion_matrix(y_test, y_pred_knn)
+    confusion_matrix_knn_df = pd.DataFrame(confusion_matrix_knn, columns=['Predicted 0', 'Predicted 1'], index=['Actual 0', 'Actual 1'])
+    confusion_matrix_knn_df.to_csv(os.path.join(results_to, "confusion_matrix_knn.csv"))
 
+    confusion_matrix_DT = confusion_matrix(y_test, y_pred_DT)
+    confusion_matrix_DT_df = pd.DataFrame(confusion_matrix_DT, columns=['Predicted 0', 'Predicted 1'], index=['Actual 0', 'Actual 1'])
+    confusion_matrix_DT_df.to_csv(os.path.join(results_to, "confusion_matrix_DT.csv"))
 if __name__ == '__main__':
     main()

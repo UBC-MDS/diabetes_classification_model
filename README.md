@@ -112,12 +112,11 @@ python scripts/hyperparam_optimization.py \
 
 # Evaluation and scoring of the model
 python scripts/evaluate_diabetes_classifier.py \
-    --models=results/models \
     --train_df=data/processed/train_df.csv \
     --test_df=data/processed/test_df.csv \
-    --knn_from=results/models \
-    --DT_from=results/models \
-    --results_to=results/test_score
+    --knn_from=results/models/knn_pipeline.pickle \
+    --dt_from=results/models/tree_model.pickle \
+    --results_to=results/tables
 
 ```
 
