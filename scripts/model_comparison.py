@@ -14,6 +14,7 @@ from sklearn.metrics import fbeta_score, make_scorer
 from joblib import dump
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src.model_cross_val import mean_std_cross_val_scores
+from src.get_feature_importance.py import get_feature_importance
 
 @click.command()
 @click.option('--training_data', type=str, help="Path to training data")
@@ -26,7 +27,8 @@ from src.model_cross_val import mean_std_cross_val_scores
 def main(training_data, preprocessor, optimized_knn, optimized_tree, table_to):
     """
     Returns a table with the cross validation scores comparing three classification models: 
-    k-nn, decision tree, dummy, and logistic regression.
+    k-nn, decision tree, dummy, and logistic regression, in addition to a table comparing the feature 
+    coefficients generated from logistic regression.
     """
     set_config(transform_output="pandas")
 
