@@ -2,7 +2,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 import pandas as pd
 
-def get_feature_importances(X_train, y_train, target_column_name):
+def get_feature_importances(X_train, y_train):
     """
     Scales data using a standard scaler, runs logistic regression 
     on the training data and returns a dataframe of the feature names 
@@ -36,7 +36,6 @@ def get_feature_importances(X_train, y_train, target_column_name):
     lr.fit(X_train_scaled, y_train)
 
     # Grab feature columns
-    # feature_columns = X_train.drop(columns=[target_column_name]).columns
     feature_columns = X_train.columns
     
     # Create a DataFrame to display coefficients
