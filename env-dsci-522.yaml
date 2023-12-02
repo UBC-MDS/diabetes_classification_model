@@ -8,6 +8,8 @@ channels:
     - defaults
 dependencies:
     - python==3.10
+    - click=8.1.7
+    - jupyter-book=0.15.1
     - ipykernel
     - matplotlib>=3.8.0
     - pandas>=2.1.1
@@ -28,3 +30,6 @@ dependencies:
         - mglearn
         - graphviz
         - psutil>=5.7.2
+        - pytest==7.4.3
+        - ucimlrepo==0.0.3
+        - myst-nb==1.0.0
