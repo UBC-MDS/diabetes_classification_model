@@ -102,6 +102,23 @@ python scripts/eda.py \
     --preprocessor-to=results/models \
     --fig-to=results/figures \
     --table-to=results/tables
+
+# Perform hyperparameter optimization and view results from cross-validation on the optimal models. 
+python scripts/hyperparam_optimization.py \
+    --training_data=data/processed/train_df.csv \
+    --preprocessor=results/models/diabetes_preprocessor.pickle \
+    --models_to=results/models \
+    --table_to=results/tables
+
+# Evaluation and scoring of the model
+python scripts/evaluate_diabetes_classifier.py \
+    --models=results/models \
+    --train_df=data/processed/train_df.csv \
+    --test_df=data/processed/test_df.csv \
+    --knn_from=results/models \
+    --DT_from=results/models \
+    --results_to=results/test_score
+
 ```
 
 ## Running the tests
