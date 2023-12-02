@@ -14,7 +14,7 @@ from sklearn.metrics import fbeta_score, make_scorer
 from joblib import dump
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src.model_cross_val import mean_std_cross_val_scores
-from src.get_feature_importance.py import get_feature_importance
+from src.get_feature_importance.py import get_feature_importances
 
 @click.command()
 @click.option('--training_data', type=str, help="Path to training data")
@@ -61,6 +61,10 @@ def main(training_data, preprocessor, optimized_knn, optimized_tree, table_to):
     results_df = pd.DataFrame(results).T
     results_df.to_csv(os.path.join(table_to,"model_comparison_results.csv"))
 
+    # Get coefficient table from logistic regression
+    coef_df = get_feature_importances(X_train, y_train, "Diabetes_binary")
+    coef_df.to_csv(os.path.join(table_to,"feature_importances.csv"))
+    
 if __name__ == '__main__':
     main()
 
