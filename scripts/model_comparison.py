@@ -14,6 +14,8 @@ from sklearn.pipeline import make_pipeline
 from sklearn.metrics import fbeta_score, make_scorer
 from joblib import dump
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from src.model_cross_val import mean_std_cross_val_scores
+from src.get_feature_importance.py import get_feature_importances
 
 @click.command()
 @click.option('--training_data', type=str, help="Path to training data")
@@ -26,7 +28,8 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 def main(training_data, preprocessor, optimized_knn, optimized_tree, table_to):
     """
     Returns a table with the cross validation scores comparing three classification models: 
-    k-nn, decision tree, dummy, and logistic regression.
+    k-nn, decision tree, dummy, and logistic regression, in addition to a table comparing the feature 
+    coefficients generated from logistic regression.
     """
     set_config(transform_output="pandas")
 
@@ -46,37 +49,6 @@ def main(training_data, preprocessor, optimized_knn, optimized_tree, table_to):
                                          LogisticRegression(max_iter=1000)),
         "Knn": knn_pipeline
     }
-
-    #Below is a function from the DSCI 571 Lecture notes which we will use for cross validation. 
-    def mean_std_cross_val_scores(model, X_train, y_train, **kwargs):
-        """
-        Returns mean and std of cross validation
-    
-        Parameters
-        ----------
-        model :
-            scikit-learn model
-        X_train : numpy array or pandas DataFrame
-            X in the training data
-        y_train :
-            y in the training data
-    
-        Returns
-        ----------
-            pandas Series with mean scores from cross_validation
-        """
-    
-        scores = cross_validate(model, X_train, y_train, **kwargs)
-    
-        mean_scores = pd.DataFrame(scores).mean()
-        std_scores = pd.DataFrame(scores).std()
-        out_col = []
-    
-        for i in range(len(mean_scores)):
-            out_col.append((f"%0.3f (+/- %0.3f)" % 
-                            (mean_scores.iloc[i], std_scores.iloc[i])))
-    
-        return pd.Series(data=out_col, index=mean_scores.index) 
     
     # Evaluate each model
     results = {}
@@ -90,6 +62,10 @@ def main(training_data, preprocessor, optimized_knn, optimized_tree, table_to):
     results_df = pd.DataFrame(results).T
     results_df.to_csv(os.path.join(table_to,"model_comparison_results.csv"))
 
+    # Get coefficient table from logistic regression
+    coef_df = get_feature_importances(X_train, y_train, "Diabetes_binary")
+    coef_df.to_csv(os.path.join(table_to,"feature_importances.csv"))
+    
 if __name__ == '__main__':
     main()
 

@@ -10,8 +10,9 @@ RUN conda install -y pandas=2.1.3 \
 
 RUN pip install vl-convert-python==1.1.0 
 
-RUN pip install pytest \
-    ucimlrepo
+RUN pip install pytest==7.4.3 \
+    ucimlrepo==0.0.3 \
+    myst-nb==1.0.0
 
 RUN conda install -y click=8.1.7 \
     jupyter-book=0.15.1
