@@ -96,7 +96,7 @@ python scripts/download_split_data.py \
     --split-data-to=data/processed \
     --split-ratio=0.2
 
-# Perform preprocessing train data, EDA, and save plot and results
+# Perform preprocessing train data, EDA, and save plot and results.
 python scripts/eda.py \
     --train-data=data/processed/train_df.csv \
     --preprocessor-to=results/models \
@@ -110,7 +110,15 @@ python scripts/hyperparam_optimization.py \
     --models_to=results/models \
     --table_to=results/tables
 
-# Evaluation and scoring of the model
+# Compare optimized k-nn and decision tree models with logistic regression. 
+python scripts/model_comparison.py \
+    --training_data=data/processed/train_df.csv \
+    --preprocessor=results/models/diabetes_preprocessor.pickle \
+    --optimized_knn=results/models/knn_pipeline.pickle \
+    --optimized_tree=results/models/tree_model.pickle \
+    --table_to=results/tables
+
+# Evaluation and scoring of the model.
 python scripts/evaluate_diabetes_classifier.py \
     --train_df=data/processed/train_df.csv \
     --test_df=data/processed/test_df.csv \

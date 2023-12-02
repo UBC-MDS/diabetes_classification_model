@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 import pickle
 from sklearn import set_config
+from sklearn.model_selection import cross_validate
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LogisticRegression
