@@ -94,7 +94,7 @@ python scripts/download_split_data.py \
     --write-to=data/raw \
     --random=123 \
     --split-data-to=data/processed \
-    --split-ratio=0.2
+    --split-ratio=0.35
 
 # Perform preprocessing train data, EDA, and save plot and results.
 python scripts/eda.py \
