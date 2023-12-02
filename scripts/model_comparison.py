@@ -5,6 +5,7 @@ import numpy as np
 import pandas as pd
 import pickle
 from sklearn import set_config
+from sklearn.model_selection import cross_validate
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LogisticRegression
@@ -13,7 +14,6 @@ from sklearn.pipeline import make_pipeline
 from sklearn.metrics import fbeta_score, make_scorer
 from joblib import dump
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from src.model_cross_val import model_cross_val
 
 @click.command()
 @click.option('--training_data', type=str, help="Path to training data")
