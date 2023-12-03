@@ -34,7 +34,7 @@ for each patient.
 
 ## Report
 
-The final report can be found [here](https://ubc-mds.github.io/diabetes_classification_model/doc/diabetes_classification_model_report.html).
+The final report can be found [here](https://ubc-mds.github.io/diabetes_classification_model/diabetes_classification_model_report.html).
 
 ## Dependencies
 
