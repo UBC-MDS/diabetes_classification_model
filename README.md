@@ -138,7 +138,7 @@ python scripts/evaluate_diabetes_classifier.py \
 
 ### Clean up
 
-#### Method 1 - Virtual Environment:
+#### Method 1 - Using Virtual Environment:
 Run the following command from terminal after typing `Ctrl + C` to deactivate the virtual environment and free up the resources.
 ```
 conda deactivate Diabetes_Prediction
