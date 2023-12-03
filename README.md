@@ -1,6 +1,6 @@
 # Diabetes Classification Models
 
-Members: Angela Chen, Ella Hein, Scout McKee, and Sharon Voon.
+  - author: Angela Chen, Ella Hein, Scout McKee, and Sharon Voon.
 
 Milestone 3 project for DSCI 522.
 
@@ -47,7 +47,14 @@ This analysis can be run with either Docker or Virtual Environment through the r
 
 ### Set up:
 
-### Virtual Environment:
+#### Initialization
+
+1. [Install](https://www.docker.com/get-started/) 
+and launch Docker on your computer.
+
+2. Clone this GitHub repository.
+
+#### Method 1 - Using Virtual Environment:
 
 1. Clone the GitHub repository for this project.
 2. Run the following from the root of this repository:
@@ -56,15 +63,16 @@ This analysis can be run with either Docker or Virtual Environment through the r
 conda env create --file env-dsci-522.yaml
 ```
 
-### Docker:
+#### Method 2 - Using Docker:
 
 1. Clone the GitHub repository for this project.
 2. Install Docker [here](https://www.docker.com/get-started/) and  follow the given instruction.
 3. Launch  Docker on your local computer.
 
+
 ## Running the Analysis
 
-### Virtual Environment:
+### Method 1 - Using Virtual Environment:
 
 1. To run the analysis, run the following from the root of this repository:
 
@@ -77,7 +85,7 @@ jupyter lab
 "Restart Kernel and Run All Cells...".
 
 
-### Docker:
+### Method 2 - Using Docker:
 
 1. To run the analysis, run the following from the root of this repository:
 ```         
@@ -128,28 +136,30 @@ python scripts/evaluate_diabetes_classifier.py \
 
 ```
 
-## Running the tests
+### Clean up
 
-The test written for each function is stored in the tests folder. To run the tests, run the following from the root of this repository:
-
-``` bash
-pytest tests/* 
-```
-
-## Clean up
-
-### Virtual Environment:
+#### Method 1 - Virtual Environment:
 Run the following command from terminal after typing `Ctrl + C` to deactivate the virtual environment and free up the resources.
 ```
 conda deactivate Diabetes_Prediction
 ```
 
-### Docker:
+#### Method 2 - Using Docker:
 
 Run the following command from terminal after typing `Ctrl + C` to shut down the container and free up the resources.
 ```
 docker compose rm
 ```
+
+## Developer notes:
+
+#### Running the tests
+
+The test written for each function is stored in the tests folder. To run the tests, using `pytest`command from the root of this repository:
+
+More details about the test suite can be found in the 
+[`tests`](tests) directory.
+
 
 ## License
 
