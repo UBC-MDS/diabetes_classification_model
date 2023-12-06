@@ -51,8 +51,4 @@ def test_get_feature_importances_with_missing_values():
     with pytest.raises(ValueError):
         get_feature_importances(X_train_missing_values, y_train, target_column_name)
 
-if __name__ == "__main__":
-    pytest.main()
-
-
 
