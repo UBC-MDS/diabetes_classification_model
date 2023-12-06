@@ -30,13 +30,13 @@ git clone https://github.com/UBC-MDS/diabetes_classification_model.git
 3. To replicate the analysis, run the following command from the root directory of this project:
 
 ``` bash
-docker-compose run --rm jupyter make -C /home/jovyan/work all
+docker-compose run --rm jupyter make -C work all
 ```
 
 4. To reset the repository to its original clean state, run the following command from the root directory of this project:
 
 ``` bash
-docker-compose run --rm jupyter make -C /home/jovyan/work clean
+docker-compose run --rm jupyter make -C work clean
 ```
 
 #### Method 2 - Using Virtual Environment:

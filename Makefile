@@ -9,7 +9,7 @@
 # make all
 # make clean
 
-all: report/_build/html/index.html
+# all: report/_build/html/index.html
 
 #PLEASE refer the format of this when you write your makefile if you like:
 #file_to_create_1.png file_to_create_2.png : data_it_depends_on.dat script_it_depends_on.py
@@ -25,12 +25,12 @@ data/raw/diabetes_raw.csv data/processed/train_df.csv data/processed/test_df.csv
     --split-ratio=0.35
 
 # Perform preprocessing train data, EDA, and save plot and results.
-results/models/diabetes_preprocessor.pickle results/figures/feature_histogram_by_class.png : data/processed/train_df.csv scripts/eda.py
-	python scripts/eda.py \
-    --train-data=data/processed/train_df.csv \
-    --preprocessor-to=results/models \
-    --fig-to=results/figures \
-    --table-to=results/tables
+# results/models/diabetes_preprocessor.pickle results/figures/feature_histogram_by_class.png : data/processed/train_df.csv scripts/eda.py
+# 	python scripts/eda.py \
+#     --train-data=data/processed/train_df.csv \
+#     --preprocessor-to=results/models \
+#     --fig-to=results/figures \
+#     --table-to=results/tables
 
 # # Perform hyperparameter optimization and view results from cross-validation on the optimal models. 
 # python scripts/hyperparam_optimization.py \
