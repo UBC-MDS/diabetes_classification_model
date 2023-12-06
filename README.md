@@ -2,164 +2,92 @@
 
   - author: Angela Chen, Ella Hein, Scout McKee, and Sharon Voon.
 
-Milestone 3 project for DSCI 522.
-
 ## About
 
-In this project, we try to create models for predicting diabetes. We try
-several different models such as logistic regression, k- nearest
-neighbours (k-nn), and decision tree. The logistic regression model was
-most accurate and the k-nn model was second best. We attempted to
-optimize the hyperparameters of the k-nn model to see if we could make it
-as accurate as the logistic regression in predicting diabetes.
+This repository contains machine learning models for predicting whether an individaul has diabetes, developed as part of the DSCI 522 course. Our project explores various classification models, including logistic regression, k-nearest neighbors (k-NN), and decision trees. Through evaluation, we identified the decision tree with a `max_depth` of 5 as the most accurate model with general health factor (1 being excellent and 5 being poor) as the most important feature.
 
-At the end we evaluated our following best performing models based on accuracy,
-precision, recall, and AUC-ROC score using the test dataset:
-- logistic regression model
-- k- nearest neighbours (k-nn) with n_neighbours = 100
-Based on the evaluation metrics, the Logistic Regression model performs better
-than the K-Nearest Neighbors model on the provided test dataset. Considering
-these results and the fact that Logistic Regression also offers interpretability
-of feature coefficients, we decided to recommend the logistic regression model.
-
-The data set used for this project was created through funding from the
-CDC to "better understand the relationship between lifestyle and
-diabetes in the US". It can be found in the UC Irvine Machine Learning
-Repository
-(<https://archive.ics.uci.edu/dataset/891/cdc+diabetes+health+indicators>).
-Each row is data for one patient. As explained in the UC Irvine Machine
-Learning Repository for this data, there are 35 features which consist
-of some demographics, lab test results, and answers to survey questions
-for each patient.
+The project's primary goal is to predict diabetes using healthcare statistics, demographic information, and survey reponses. We utilized a dataset funded by the CDC to better understand the lifestyle-diabetes relationship in the US. The dataset, comprising 35 features for each patient, is available in the [UC Irvine Machine Learning Repository](https://archive.ics.uci.edu/dataset/891/cdc+diabetes+health+indicators). Each row in the dataset represent a person participating in this study for the year 2015.
 
 ## Report
 
-The final report can be found [here](https://ubc-mds.github.io/diabetes_classification_model/diabetes_classification_model_report.html).
-
-## Dependencies
-
-This project uses Docker image that is built on quay.io/jupyter/minimal-notebook:2023-11-19. Additional dependencies can be found 
-in the DockerFile as well as the env-dsci-522.yaml.
+For detailed insights and reults, refer to our [final report](https://ubc-mds.github.io/diabetes_classification_model/diabetes_classification_model_report.html).
 
 ## Usage
 
-This analysis can be run with either Docker or Virtual Environment through the respective set-up instructions provided below.
+This analysis can be run with Docker or a virtual environment through the respective set-up instructions provided below.
 
-### Set up:
+### Initialization
 
-#### Initialization
-
-1. [Install](https://www.docker.com/get-started/) 
-and launch Docker on your computer.
-
-2. Clone this GitHub repository.
-
-#### Method 1 - Using Virtual Environment:
-
-1. Clone the GitHub repository for this project.
-2. Run the following from the root of this repository:
-
+1. Clone this GitHub repository using the command:
 ``` bash
-conda env create --file env-dsci-522.yaml
+git clone https://github.com/UBC-MDS/diabetes_classification_model.git
 ```
 
-#### Method 2 - Using Docker:
+#### Method 1 - Using Docker:
 
-1. Clone the GitHub repository for this project.
-2. Install Docker [here](https://www.docker.com/get-started/) and  follow the given instruction.
-3. Launch  Docker on your local computer.
+1. Install Docker [here](https://www.docker.com/get-started/) and  follow the given instruction.
+2. Launch  Docker on your local computer.
+3. To replicate the analysis, run the following command from the root directory of this project:
 
+``` bash
+docker-compose run --rm jupyter make -C /home/jovyan/work all
+```
 
-## Running the Analysis
+4. To reset the repository to its original clean state, run the following command from the root directory of this project:
 
-### Method 1 - Using Virtual Environment:
+``` bash
+docker-compose run --rm jupyter make -C /home/jovyan/work clean
+```
 
-1. To run the analysis, run the following from the root of this repository:
+#### Method 2 - Using Virtual Environment:
 
+1. Run the following from the root directory of this project:
+``` bash
+conda env create --file environment.yaml
+```
+
+2. To activate the virtual environment:
 ``` bash
 conda activate Diabetes_Prediction
-jupyter lab 
 ```
 
-2. Open `diabetes_classification_model.ipynb` in Jupyter Lab that is located inside the src folder. Under the "Kernel" menu click
-"Restart Kernel and Run All Cells...".
-
-
-### Method 2 - Using Docker:
-
-1. To run the analysis, run the following from the root of this repository:
-```         
-docker compose up
+3. To replicate the analysis, run the following command from the root directory of this project:
+``` bash
+make all
 ```
 
-2. Click on the link provided in the terminal that starts with `http://127.0.0.1:8888/lab` or copy and paste it into your web browser.
-
-3. To run the analysis, run the following commands in the terminal from the root of this repository:
-```
-# Download, drop duplicate and split data into train and test data frame
-python scripts/download_split_data.py \
-    --id=891 \
-    --write-to=data/raw \
-    --random=123 \
-    --split-data-to=data/processed \
-    --split-ratio=0.35
-
-# Perform preprocessing train data, EDA, and save plot and results.
-python scripts/eda.py \
-    --train-data=data/processed/train_df.csv \
-    --preprocessor-to=results/models \
-    --fig-to=results/figures \
-    --table-to=results/tables
-
-# Perform hyperparameter optimization and view results from cross-validation on the optimal models. 
-python scripts/hyperparam_optimization.py \
-    --training_data=data/processed/train_df.csv \
-    --preprocessor=results/models/diabetes_preprocessor.pickle \
-    --models_to=results/models \
-    --table_to=results/tables
-
-# Compare optimized k-nn and decision tree models with logistic regression. 
-python scripts/model_comparison.py \
-    --training_data=data/processed/train_df.csv \
-    --preprocessor=results/models/diabetes_preprocessor.pickle \
-    --optimized_knn=results/models/knn_pipeline.pickle \
-    --optimized_tree=results/models/tree_model.pickle \
-    --table_to=results/tables
-
-# Evaluation and scoring of the model.
-python scripts/evaluate_diabetes_classifier.py \
-    --train_df=data/processed/train_df.csv \
-    --test_df=data/processed/test_df.csv \
-    --knn_from=results/models/knn_pipeline.pickle \
-    --dt_from=results/models/tree_model.pickle \
-    --results_to=results/tables
-
-```
-
-### Clean up
-
-#### Method 1 - Using Virtual Environment:
-Run the following command from terminal after typing `Ctrl + C` to deactivate the virtual environment and free up the resources.
-```
-conda deactivate Diabetes_Prediction
-```
-
-#### Method 2 - Using Docker:
-
-Run the following command from terminal after typing `Ctrl + C` to shut down the container and free up the resources.
-```
-docker compose rm
+4. To reset the repository to its original clean state, run the following command from the root directory of this project:
+``` bash
+make clean
+conda deactivate
+conda remove --name Diabetes_Prediction --all
 ```
 
 ## Developer notes:
 
 #### Running the tests
 
-The test written for each function is stored in the tests folder. To run the tests, using `pytest`command from the root of this repository:
+The test written for each function is stored in the tests folder. To run the tests, using `pytest` command from the root of this repository:
 
 More details about the test suite can be found in the 
 [`tests`](tests) directory.
 
+## Dependencies
+
+This project relies on Docker image that is built on quay.io/jupyter/minimal-notebook:2023-11-19. Additional dependencies can be found in the [DockerFile](Dockerfile).
+
+ - pandas=2.1.3
+ - altair=5.1.2
+ - scikit-learn=1.3.2
+ - vegafusion=1.4.5
+ - vegafusion-python-embed=1.4.5
+ - vl-convert-python==1.1.0
+ - pip install pytest==7.4.3
+ - ucimlrepo==0.0.3
+ - myst-nb==1.0.0
+ - click=8.1.7
+ - jupyter-book=0.15.1
+ - GNU make 4.2.1
 
 ## License
 
@@ -167,7 +95,7 @@ The Diabetes Prediction materials here are licensed under the Creative Commons A
 
 ## Contributing
 
-Contributions are always welcome but please do refer to [CONTRIBUTING.md](https://github.com/UBC-MDS/diabetes_classification_model/blob/main/CONTRIBUTING.md) for more details.
+Contributions are always welcome but please do refer to [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
 
 ## References
 
