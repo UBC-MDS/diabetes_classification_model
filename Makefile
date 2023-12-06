@@ -69,10 +69,11 @@ results/figures/feature_histogram_by_class.png
 
 clean:
 	rm -f results/tables/*.csv
-    rm -f results/data/diabetes_raw.csv
-    rm -f results/processed/*.csv
-    rm -f results/figures/feature_histogram_by_class.png
-    rm -f results/tables/*.csv
+	rm -f results/data/diabetes_raw.csv
+	rm -f results/data/diabetes_raw.csv
+	rm -f results/processed/*.csv
+	rm -f results/figures/feature_histogram_by_class.png
+	rm -f results/tables/*.csv
 	rm -f results/models/*.pickle
 	rm -f report/_build/html/index.html
 
