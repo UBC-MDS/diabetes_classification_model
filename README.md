@@ -65,7 +65,23 @@ conda remove --name Diabetes_Prediction --all
 
 ## Developer notes:
 
-#### Running the tests
+### Working with the project using Jupyter lab
+
+1. Run the following from the root directory of this project:
+``` bash
+docker compose up jupyter
+```
+
+2. Click on the link provided in the terminal that starts with `http://127.0.0.1:8888/lab` or copy and paste it into your web browser.
+
+3. Jupyter Lab IDE should open up in your browser. Navigate into the `work` folder and you can find all project files located on the left side of the panel.
+
+4. Run the following command from terminal after typing `Ctrl + C` to shut down the container and free up the resources:
+``` bash
+docker compose rm -f
+```
+
+### Running the tests
 
 The test written for each function is stored in the tests folder. To run the tests, using `pytest` command from the root of this repository:
 
@@ -88,6 +104,15 @@ This project relies on Docker image that is built on quay.io/jupyter/minimal-not
  - click=8.1.7
  - jupyter-book=0.15.1
  - make=4.3
+
+ ### Adding new dependency
+1. Switch to a new branch and add the dependency to the [Dockerfile](Docker).
+2. Run the following command from the root directory of this project to ensure the Docker image build properly:
+```bash
+docker build --tag test .
+```
+3. Commit and push the changes to GitHub. This repository have an action workflow setup such that new Docker image will be built and pushed to Docker Hub automatically. This `docker-compose.yml` is set up to use the latest Docker image available on the Docker Hub.
+4. Send a pull request to merge the changes into the `main` branch.
 
 ## License
 
