@@ -6,6 +6,7 @@
 
 # example usage:
 # make all
+# make clean
 
 all : report/_build/html/index.html
 
@@ -60,7 +61,7 @@ report/_build/html/index.html : report/diabetes_classification_model_report.ipyn
 	report/_config.yml
 	jupyter-book build report
 
-#Please make sure you add your clean command too!
+#Please make sure you add your clean command too! Thanks!
 
 clean:
 	rm -f results/tables/confusion_matrix_knn.csv
