@@ -17,12 +17,13 @@ expected coefficient values. To enhance attribution, author
 names have been included on the rendered report. Furthermore, 
 the README has undergone refinements, encompassing set-up 
 instructions cleanup and the organization of extraneous 
-files. Lastly, we've responded to user queries by providing 
-a succinct explanation of how the general health index, a 
-critical aspect of our model, is calculated. These updates 
-collectively aim to improve the user experience, foster 
-consistency, and ensure transparency in our project's 
-documentation and functionality.
+files. We've responded to user queries by providing a 
+succinct explanation of how the general health index, a 
+critical aspect of our model, is calculated. The analysis 
+notebook (.ipynb or .Qmd or *Rmd) is now located in a 
+sub-directory called "notebooks" for improved project 
+organization, addressing concerns about file clutter in the 
+project root.
 
 ## Features
 Reproducibility Command: Added a command in/after the 
@@ -45,10 +46,17 @@ attribution.
 General Health Index Explanation: Added a brief summary in 
 the documentation explaining how the general health index 
 is calculated, acknowledging its importance to the model.
+Summary in README: Enhanced the README with a high-level 
+interpretation of analysis findings, providing 1-2 sentences 
+on their potential implications. 
 ## Other
 README Refinement: Ongoing refinement of the README file, 
 including set-up instructions cleanup and the organization 
 of unnecessary files (e.g., .DS_Store, .Rhistory).
+Grading Comment Addressed: The analysis notebook is now 
+located in a sub-directory called "notebooks" for improved 
+project organization, addressing concerns about file clutter 
+in the project root.
 
 As we release this latest version of our project, we extend 
 our heartfelt gratitude to all contributors who have played 
