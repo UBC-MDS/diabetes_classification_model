@@ -6,7 +6,7 @@
 
 This repository contains machine learning models for predicting whether an individaul has diabetes, developed as part of the DSCI 522 course. Our project explores various classification models, including logistic regression, k-nearest neighbors (k-NN), and decision trees. Through evaluation, we identified the decision tree with a `max_depth` of 5 as the most accurate model with general health factor (1 being excellent and 5 being poor) as the most important feature.
 
-The project's primary goal is to predict diabetes using healthcare statistics, demographic information, and survey reponses. We utilized a dataset funded by the CDC to better understand the lifestyle-diabetes relationship in the US. The dataset, comprising 35 features for each patient, is available in the [UC Irvine Machine Learning Repository](https://archive.ics.uci.edu/dataset/891/cdc+diabetes+health+indicators). Each row in the dataset represent a person participating in this study for the year 2015.
+The project's primary goal is to predict diabetes using healthcare statistics, demographic information, and survey reponses. We utilized a dataset funded by the CDC to better understand the lifestyle-diabetes relationship in the US. The dataset, comprising 35 features for each patient, is available in the [UC Irvine Machine Learning Repository](https://archive.ics.uci.edu/dataset/891/cdc+diabetes+health+indicators). Each row in the dataset represents a person participating in this study for the year 2015.
 
 ## Report
 
@@ -87,7 +87,7 @@ This project relies on Docker image that is built on quay.io/jupyter/minimal-not
  - myst-nb==1.0.0
  - click=8.1.7
  - jupyter-book=0.15.1
- - GNU make 4.2.1
+ - make=4.3
 
 ## License
 
