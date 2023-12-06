@@ -32,12 +32,13 @@ results/models/diabetes_preprocessor.pickle results/figures/feature_histogram_by
     --fig-to=results/figures \
     --table-to=results/tables
 
-# # Perform hyperparameter optimization and view results from cross-validation on the optimal models. 
-# python scripts/hyperparam_optimization.py \
-#     --training_data=data/processed/train_df.csv \
-#     --preprocessor=results/models/diabetes_preprocessor.pickle \
-#     --models_to=results/models \
-#     --table_to=results/tables
+# # Perform hyperparameter optimization and get the hyperparameters of the optimal models. 
+results/models/tree_model.pickle results/models/knn_pipeline.pickle results/tables/best_hyperparams.csv : scripts/hyperparam_optimization.py data/processed/train_df.csv results/models/diabetes_preprocessor.pickle
+	python scripts/hyperparam_optimization.py \
+	--training_data=data/processed/train_df.csv \
+	--preprocessor=results/models/diabetes_preprocessor.pickle \
+	--models_to=results/models \
+	--table_to=results/tables
 
 # # Compare optimized k-nn and decision tree models with logistic regression. 
 # python scripts/model_comparison.py \
@@ -75,5 +76,8 @@ clean:
     rm -f results/tables/*.csv
 	rm -f results/models/*.pickle
 	rm -f report/_build/html/index.html
+	rm -f results/models/tree_model.pickle
+	rm -f results/models/knn_pipeline.pickle
+	rm -f results/tables/best_hyperparams.csv
 
 
