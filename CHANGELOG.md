@@ -1,7 +1,7 @@
 # Changelog
 2023 December
 author: Angela Chen, Ella Hein, Scout McKee, and Sharon Voon.
-
+## Abstract
 In this latest December release - Milestone 4, we introduce 
 several enhancements, bug fixes, and documentation updates to 
 improve the overall functionality and clarity of our project. 
@@ -58,6 +58,7 @@ located in a sub-directory called "notebooks" for improved
 project organization, addressing concerns about file clutter 
 in the project root.
 
+## Thank You Note:
 As we release this latest version of our project, we extend 
 our heartfelt gratitude to all contributors who have played 
 a pivotal role in shaping and refining its functionality. 
