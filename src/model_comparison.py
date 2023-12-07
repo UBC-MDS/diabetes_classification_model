@@ -1,9 +1,32 @@
+# author: Ella Hein
+# date: 2023-12-06
 
+"""Returns a csv table with the cross validation scores comparing three classification models: 
+    k-nn, decision tree, dummy, and logistic regression, in addition to a csv table comparing the feature 
+    coefficients generated from logistic regression.
+
+Usage: 
+    src/model_comparison.py
+    --training_data=<training_data_csv> 
+	--preprocessor=<preprocessor_pickle>
+	--optimized_knn=<knn_pipeline_pickle>
+	--optimized_tree=<decision_tree_pickle>
+	--table_to=<table_to>
+
+Options:
+--training_data=<training_data_csv>         path to the csv containing the training data. 
+--preprocessor=<preprocessor_pickle>        path to the preprocessor object
+--optimized_knn=<knn_pipeline_pickle>       path to the optimized k-NN model object
+--optimized_tree=<decision_tree_pickle>     path to the optimized decision tree object
+--table_to=<table_to>                       path to directory where the cross validation tables for all models
+                                                will be written to.
+"""
 import os
 import sys
 import numpy as np
 import pandas as pd
 import pickle
+from docopt import docopt
 from sklearn import set_config
 from sklearn.model_selection import cross_validate
 from sklearn.neighbors import KNeighborsClassifier
@@ -17,35 +40,10 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src.get_feature_importance import get_feature_importances
 from src.model_cross_val import mean_std_cross_val_scores
 
-# author: Ella Hein
-# date: 2023-12-06
-
-"""Returns a csv table with the cross validation scores comparing three classification models: 
-    k-nn, decision tree, dummy, and logistic regression, in addition to a csv table comparing the feature 
-    coefficients generated from logistic regression.
-
-Usage: src/down_data.py --out_type=<out_type> --url=<url> --out_file=<out_file>
-
-Options:
---out_type=<out_type>    Type of file to write locally (script supports either feather or csv)
---url=<url>              URL from where to download the data (must be in standard csv format)
---out_file=<out_file>    Path (including filename) of where to locally write the file
-"""
-
-@click.command()
-@click.option('--training_data', type=str, help="Path to training data")
-@click.option('--preprocessor', type=str, help="Path to preprocessor object")
-@click.option('--optimized_knn', type=str, help="Path to optimized k-NN model object")
-@click.option('--optimized_tree', type=str, help="Path to optimized decision tree object")
-@click.option('--table_to', type=str, help="Path to directory where crossvalidation results for all models will be written to")
-
+opt = docopt(__doc__)
 
 def main(training_data, preprocessor, optimized_knn, optimized_tree, table_to):
-    """
-    Returns a table with the cross validation scores comparing three classification models: 
-    k-nn, decision tree, dummy, and logistic regression, in addition to a table comparing the feature 
-    coefficients generated from logistic regression.
-    """
+    
     set_config(transform_output="pandas")
 
     # read in data & preprocessor
@@ -82,8 +80,5 @@ def main(training_data, preprocessor, optimized_knn, optimized_tree, table_to):
     coef_df.to_csv(os.path.join(table_to,"feature_importances.csv"))
     
 if __name__ == '__main__':
-    main()
-
-
-
-
+    main(opt["--training_data"], opt["--preprocessor"], opt["--optimized_knn"], 
+         opt["--optimized_tree"], opt["--table_to"])
