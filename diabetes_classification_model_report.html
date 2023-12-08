@@ -7,9 +7,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Predicting if an individual is diabetic from health factor &#8212; Predicting if an individual is diabetic from health factor</title>
+    <title>Diabetes Classification Model &#8212; Predicting if an individual is diabetic from health factor</title>
   
   
   
@@ -156,7 +156,7 @@ const thebe_selector_output = ".output, .cell_output"
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1 current active">
                 <a class="reference internal" href="#">
-                    Predicting if an individual is diabetic from health factor
+                    Diabetes Classification Model
                 </a>
             </li>
         </ul>
@@ -297,7 +297,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Predicting if an individual is diabetic from health factor</h1>
+    <h1>Diabetes Classification Model</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -327,10 +327,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="predicting-if-an-individual-is-diabetic-from-health-factor">
-<h1>Predicting if an individual is diabetic from health factor<a class="headerlink" href="#predicting-if-an-individual-is-diabetic-from-health-factor" title="Permalink to this heading">#</a></h1>
-<p>by Angela Chen, Ella Hein, Scout McKee, Sharon Voon 2023/12/01</p>
-<div class="cell docutils container">
+  <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">pickle</span>
@@ -349,8 +346,7 @@ document.write(`
 <span class="n">glue</span><span class="p">(</span><span class="s2">&quot;dummy_score&quot;</span><span class="p">,</span> <span class="n">scores_df</span><span class="p">[</span><span class="s1">&#39;test_score&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">display</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> 
 <span class="n">glue</span><span class="p">(</span><span class="s2">&quot;model_score_table&quot;</span><span class="p">,</span> <span class="n">scores_df</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="n">coef_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../results/tables/feature_importances.csv&quot;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">coef_df</span> <span class="o">=</span> <span class="n">coef_df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;coefficients&quot;</span><span class="p">],</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">coef_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;../results/tables/feature_importances.csv&quot;</span><span class="p">,</span><span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;coefficients&#39;</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">,</span> <span class="n">ascending</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;features != &#39;ID&#39;&quot;</span><span class="p">)</span>
 <span class="n">glue</span><span class="p">(</span><span class="s2">&quot;coef_table&quot;</span><span class="p">,</span> <span class="n">coef_df</span><span class="p">,</span> <span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">glue</span><span class="p">(</span><span class="s2">&quot;highest_importance_coeff&quot;</span><span class="p">,</span> <span class="n">coef_df</span><span class="p">[</span><span class="s1">&#39;coefficients&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">display</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
@@ -365,9 +361,12 @@ document.write(`
 </div>
 </div>
 </div>
+<section class="tex2jax_ignore mathjax_ignore" id="diabetes-classification-model">
+<h1>Diabetes Classification Model<a class="headerlink" href="#diabetes-classification-model" title="Permalink to this heading">#</a></h1>
+<p>Authors: Angela Chen, Ella Hein, Scout McKee, Sharon Voon</p>
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading">#</a></h2>
-<p>This project endeavors to develop a predictive classification model for ascertaining an individual’s diabetic status, while comparing the efficiency of optimized decision tree and optimized k-nearest neighbours (k-nn) algorithms. The dataset used in this analysis is collected through the Behavioral Risk Factor Surveillance System (BFRSS) by the Centers for Disease Control and Prevention (CDC) for the year 2015. Notably, the primary determinant influencing the prediction is identified as the feature General Health (GenHlth), displaying a coefficient of <span class="pasted-text">0.55</span>  as revealed by the logistic regression model. The optimized decision tree model demonstrates a test score of <span class="pasted-text">0.852 (+/- 0.001)</span>,while the optimized k-nn model yields a test score of <span class="pasted-text">0.847 (+/- 0.000)</span>. Both of the test scores are relatively close to the validation score which shows that the model will generalized well to unseen data, however, there is still room for improvement in the test score.</p>
+<p>This project endeavors to develop a predictive classification model for ascertaining an individual’s diabetic status, while comparing the efficiency of optimized decision tree and optimized k-nearest neighbours (k-nn) algorithms. The dataset used in this analysis is collected through the Behavioral Risk Factor Surveillance System (BFRSS) by the Centers for Disease Control and Prevention (CDC) for the year 2015. Notably, the primary determinant influencing the prediction is identified as the feature General Health Factor (1 being excellent and 5 being poor), displaying a coefficient of <span class="pasted-text">0.55</span>  as revealed by the logistic regression model. The optimized decision tree model demonstrates a test score of <span class="pasted-text">0.852 (+/- 0.001)</span>,while the optimized k-nn model yields a test score of <span class="pasted-text">0.847 (+/- 0.000)</span>. Both of the test scores are relatively close to the validation score which shows that the model will generalized well to unseen data, however, there is still room for improvement in the test score.</p>
 <p>Our final classsifer is chosen to be the Desicion Tree model as it has both the highest test and train score in comparison with the optimized k-nn model. However, from the confusion matrix, we can see that our model has made <span class="pasted-text">11179</span> type II error, which predicted the individual as non-diabetic when they are actually diabetic. On the other hand, it has also made <span class="pasted-text">784</span> type I error, which predicted the individual as diabetic when they are actually non-diabetic. In our case, both type II error and type I error is equivalently important as injecting insulin in a non-diabetic individual can be fatal and vice versa. Hence, we chose f1 score as our scoring matrix which is a hormonic balance between both type I and type II errors.</p>
 <p>From this result, we can also see that there is a huge class imbalance in between diabetic and non-diabetic class, which will be taken into account in the preprocessor in the next version of this analysis.</p>
 <p>Continued efforts in these areas will contribute to the model’s robustness and reliability, making it more suitable for deployment in a clinical setting.</p>
@@ -380,11 +379,11 @@ document.write(`
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">#</a></h2>
 <section id="data">
 <h3>Data<a class="headerlink" href="#data" title="Permalink to this heading">#</a></h3>
-<p>The dataset used in this project is a collection of the Centers for Disease Control and Prevention (CDC) diabetes health indicators collected as a response to the CDC’s BRFSS2015 survey. The data were sourced from the UCI Machine Learning Repository <span id="id4">[<a class="reference internal" href="#id9" title="Nilka Rios Burrows, Israel Hora, Linda S Geiss, Edward W Gregg, and Ann Albright. Incidence of end-stage renal disease attributed to diabetes among persons with diagnosed diabetes—united states and puerto rico, 2000–2014. Morbidity and Mortality Weekly Report, 66(43):1165, 2017.">Burrows <em>et al.</em>, 2017</a>]</span> which can be found <a class="reference external" href="https://archive.ics.uci.edu/dataset/891/cdc+diabetes+health+indicators">here</a>. The file specifically used from this repository for this analysis includes 70, 692 survey responses from which 50% of the respondents recorded having either prediabetes or diabetes. Each row in the dataset represents a recorded survey response including whether or not the responded has diabetes or prediabetes, and a collection of 21 other diabetes health indicators identified by the CDC.</p>
+<p>The dataset used in this project is a collection of the Centers for Disease Control and Prevention (CDC) diabetes health indicators collected as a response to the CDC’s BRFSS2015 survey. The data were sourced from the UCI Machine Learning Repository <span id="id4">[<a class="reference internal" href="#id9" title="Nilka Rios Burrows, Israel Hora, Linda S Geiss, Edward W Gregg, and Ann Albright. Incidence of end-stage renal disease attributed to diabetes among persons with diagnosed diabetes—united states and puerto rico, 2000–2014. Morbidity and Mortality Weekly Report, 66(43):1165, 2017. URL: https://pubmed.ncbi.nlm.nih.gov/29095800/, doi:10.15585/mmwr.mm6643a2.">Burrows <em>et al.</em>, 2017</a>]</span> which can be found <a class="reference external" href="https://archive.ics.uci.edu/dataset/891/cdc+diabetes+health+indicators">here</a>. The file specifically used from this repository for this analysis includes 70, 692 survey responses from which 50% of the respondents recorded having either prediabetes or diabetes. Each row in the dataset represents a recorded survey response including whether or not the responded has diabetes or prediabetes, and a collection of 21 other diabetes health indicators identified by the CDC.</p>
 </section>
 <section id="analysis">
 <h3>Analysis<a class="headerlink" href="#analysis" title="Permalink to this heading">#</a></h3>
-<p>In our efforts to determine the best model for classifying a patient with diabetes or prediabetes as opposed to no diabetes or prediabetes, we performed hyperparamter optimization on both a knn model and a decision tree model. We also explored a logistic regression model to gain insight into which features may contribute most to a classification of diabetes. All features from the original dataset were included in each model. In all cases, the data were split into training and testing datasets, with 80% of the data designated as training and 20% as testing. The data was preprocessesed such that all continuous (non-binary) variables were scaled using a scikit-learn’s StandardScaler function. Model performance was tested using a 10 - fold cross validation score. Feature importance was investigated using the coefficients generated by the logistic regression algorithm. The k-nn algorithm’s hyperparameter K was optimized using the F1 score as the classification metric. Python programming (Van Rossum and Drake 2009) was used for all analysis. The following Python packages were used for this analysis: Pandas <span id="id5">[<a class="reference internal" href="#id14" title="Wes McKinney. Data Structures for Statistical Computing in Python. In Stéfan van der Walt and Jarrod Millman, editors, Proceedings of the 9th Python in Science Conference, 56 - 61. 2010. doi:10.25080/Majora-92bf1922-00a.">Wes McKinney, 2010</a>]</span>, altair <span id="id6">[<a class="reference internal" href="#id12" title="Jacob VanderPlas, Brian Granger, Jeffrey Heer, Dominik Moritz, Kanit Wongsuphasawat, Arvind Satyanarayan, Eitan Lees, Ilia Timofeev, Ben Welsh, and Scott Sievert. Altair: interactive statistical visualizations for python. Journal of open source software, 3(32):1057, 2018.">VanderPlas <em>et al.</em>, 2018</a>]</span>, and scikit-learn <span id="id7">[<a class="reference internal" href="#id11" title="Fabian Pedregosa, Gaël Varoquaux, Alexandre Gramfort, Vincent Michel, Bertrand Thirion, Olivier Grisel, Mathieu Blondel, Peter Prettenhofer, Ron Weiss, Vincent Dubourg, and others. Scikit-learn: machine learning in python. the Journal of machine Learning research, 12:2825–2830, 2011.">Pedregosa <em>et al.</em>, 2011</a>]</span>.</p>
+<p>In our efforts to determine the best model for classifying a patient with diabetes or prediabetes as opposed to no diabetes or prediabetes, we performed hyperparamter optimization on both a knn model and a decision tree model. We also explored a logistic regression model to gain insight into which features may contribute most to a classification of diabetes. All features from the original dataset were included in each model. In all cases, the data were split into training and testing datasets, with 65% of the data designated as training and 35% as testing. The data was preprocessesed such that all continuous (non-binary) variables were scaled using a scikit-learn’s StandardScaler function. Model performance was tested using a 10 - fold cross validation score. Feature importance was investigated using the coefficients generated by the logistic regression algorithm. The k-nn algorithm’s hyperparameter K was optimized using the F1 score as the classification metric. Python programming (Van Rossum and Drake 2009) was used for all analysis. The following Python packages were used for this analysis: Pandas <span id="id5">[<a class="reference internal" href="#id14" title="Wes McKinney. Data Structures for Statistical Computing in Python. In Stéfan van der Walt and Jarrod Millman, editors, Proceedings of the 9th Python in Science Conference, 56 - 61. 2010. doi:10.25080/Majora-92bf1922-00a.">Wes McKinney, 2010</a>]</span>, altair <span id="id6">[<a class="reference internal" href="#id12" title="Jacob VanderPlas, Brian Granger, Jeffrey Heer, Dominik Moritz, Kanit Wongsuphasawat, Arvind Satyanarayan, Eitan Lees, Ilia Timofeev, Ben Welsh, and Scott Sievert. Altair: interactive statistical visualizations for python. Journal of open source software, 3(32):1057, 2018. URL: https://joss.theoj.org/papers/10.21105/joss.01057, doi:10.21105/joss.01057.">VanderPlas <em>et al.</em>, 2018</a>]</span>, and scikit-learn <span id="id7">[<a class="reference internal" href="#id11" title="Fabian Pedregosa, Gaël Varoquaux, Alexandre Gramfort, Vincent Michel, Bertrand Thirion, Olivier Grisel, Mathieu Blondel, Peter Prettenhofer, Ron Weiss, Vincent Dubourg, and others. Scikit-learn: machine learning in python. the Journal of machine Learning research, 12:2825–2830, 2011. doi:10.5555/1953048.2078195.">Pedregosa <em>et al.</em>, 2011</a>]</span>.</p>
 </section>
 <section id="results-discussion">
 <h3>Results &amp; Discussion<a class="headerlink" href="#results-discussion" title="Permalink to this heading">#</a></h3>
@@ -425,29 +424,29 @@ document.write(`
   <tbody>
     <tr>
       <th>Dummy</th>
-      <td>0.018 (+/- 0.001)</td>
-      <td>0.002 (+/- 0.000)</td>
+      <td>0.034 (+/- 0.002)</td>
+      <td>0.005 (+/- 0.001)</td>
       <td>0.847 (+/- 0.000)</td>
       <td>0.847 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>Decision tree</th>
-      <td>0.217 (+/- 0.002)</td>
-      <td>0.005 (+/- 0.000)</td>
+      <td>0.309 (+/- 0.009)</td>
+      <td>0.007 (+/- 0.000)</td>
       <td>0.852 (+/- 0.001)</td>
       <td>0.852 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>Logistic regression</th>
-      <td>0.073 (+/- 0.002)</td>
-      <td>0.004 (+/- 0.000)</td>
+      <td>0.115 (+/- 0.005)</td>
+      <td>0.006 (+/- 0.001)</td>
       <td>0.847 (+/- 0.000)</td>
       <td>0.847 (+/- 0.000)</td>
     </tr>
     <tr>
       <th>Knn</th>
-      <td>0.027 (+/- 0.005)</td>
-      <td>1.555 (+/- 0.099)</td>
+      <td>0.047 (+/- 0.002)</td>
+      <td>1.222 (+/- 0.038)</td>
       <td>0.847 (+/- 0.000)</td>
       <td>0.847 (+/- 0.000)</td>
     </tr>
@@ -457,7 +456,7 @@ document.write(`
 <p><span class="caption-number">Fig. 2 </span><span class="caption-text">Cross validation results for all optimized models, as a result of a random search hyperparamater optimization, compared to a dummy classifier.</span><a class="headerlink" href="#model-score-table" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Although the logistic regression model did not have the best performance compared to the other models, with a cross-validation score of <span class="pasted-text">0.847 (+/- 0.000)</span> its coefficients were still useful in investigating which features were weighted as more important in indicating whether a person has diabetes/prediabetes. The results, shown in the table below (<a class="reference internal" href="#coef-table"><span class="std std-numref">Figure 3</span></a>), indicate that general health (GenHlth), is the largest predictor of diabetes/prediabetes, followed by body mass index (BMI), high blood pressure (HighBP), and age, respectively. All of these factors, unsurprisingly had a positive correlation with the presence of diabetes/prediabetes.</p>
+<p>Although the logistic regression model did not have the best performance compared to the other models, with a cross-validation score of <span class="pasted-text">0.847 (+/- 0.000)</span> its coefficients were still useful in investigating which features were weighted as more important in indicating whether a person has diabetes/prediabetes. The results, shown in the table below (<a class="reference internal" href="#coef-table"><span class="std std-numref">Figure 3</span></a>), indicate that general health (GenHlth), is the largest predictor of diabetes/prediabetes. For this feature, patients were asked to rate their general health on a scale of 1-5 where 1 = excellent, 2 = very good, 3 = good, 4 = fair,  5 = poor. The next largest predictors of diabetes/prediabetes were body mass index (BMI), high blood pressure (HighBP), and age, respectively.  All of these factors, unsurprisingly had a positive correlation with the presence of diabetes/prediabetes. It is important to note that this analysis does not allow us to make any causal inference. However, these results allows us to see which features are more strongly correlated with diabetes which could inform future studies or analyses.</p>
 <figure class="align-default" id="coef-table" style="width: 700px">
 <div class="output text_html"><div>
 <style scoped>
@@ -513,9 +512,24 @@ document.write(`
       <td>0.25</td>
     </tr>
     <tr>
+      <th>11</th>
+      <td>HvyAlcoholConsump</td>
+      <td>-0.19</td>
+    </tr>
+    <tr>
       <th>18</th>
       <td>Sex</td>
       <td>0.14</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Income</td>
+      <td>-0.09</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>PhysHlth</td>
+      <td>-0.07</td>
     </tr>
     <tr>
       <th>7</th>
@@ -528,14 +542,9 @@ document.write(`
       <td>0.06</td>
     </tr>
     <tr>
-      <th>12</th>
-      <td>AnyHealthcare</td>
-      <td>0.02</td>
-    </tr>
-    <tr>
-      <th>0</th>
-      <td>ID</td>
-      <td>0.02</td>
+      <th>15</th>
+      <td>MentHlth</td>
+      <td>-0.03</td>
     </tr>
     <tr>
       <th>6</th>
@@ -543,18 +552,28 @@ document.write(`
       <td>0.02</td>
     </tr>
     <tr>
-      <th>13</th>
-      <td>NoDocbcCost</td>
-      <td>0.00</td>
+      <th>9</th>
+      <td>Fruits</td>
+      <td>-0.02</td>
     </tr>
     <tr>
-      <th>8</th>
-      <td>PhysActivity</td>
-      <td>-0.01</td>
+      <th>12</th>
+      <td>AnyHealthcare</td>
+      <td>0.02</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Education</td>
+      <td>-0.02</td>
     </tr>
     <tr>
       <th>5</th>
       <td>Smoker</td>
+      <td>-0.01</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>PhysActivity</td>
       <td>-0.01</td>
     </tr>
     <tr>
@@ -563,39 +582,14 @@ document.write(`
       <td>-0.01</td>
     </tr>
     <tr>
-      <th>20</th>
-      <td>Education</td>
-      <td>-0.02</td>
-    </tr>
-    <tr>
-      <th>9</th>
-      <td>Fruits</td>
-      <td>-0.02</td>
-    </tr>
-    <tr>
-      <th>15</th>
-      <td>MentHlth</td>
-      <td>-0.03</td>
-    </tr>
-    <tr>
-      <th>16</th>
-      <td>PhysHlth</td>
-      <td>-0.07</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>Income</td>
-      <td>-0.09</td>
-    </tr>
-    <tr>
-      <th>11</th>
-      <td>HvyAlcoholConsump</td>
-      <td>-0.19</td>
+      <th>13</th>
+      <td>NoDocbcCost</td>
+      <td>0.00</td>
     </tr>
   </tbody>
 </table>
 </div></div><figcaption>
-<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Logistic regression coefficients by feature.</span><a class="headerlink" href="#coef-table" title="Permalink to this image">#</a></p>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Logistic regression coefficients by feature, ordered by absolute value of coefficient.</span><a class="headerlink" href="#coef-table" title="Permalink to this image">#</a></p>
 </figcaption>
 </figure>
 <p>To enhance the future iterations of this model for potential use in medical pre-diagnosis, we propose the following recommendations:</p>
@@ -610,28 +604,23 @@ document.write(`
 <section id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
 <div class="docutils container" id="id8">
-<div class="citation" id="id9" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">BHG+17</a><span class="fn-bracket">]</span></span>
-<p>Nilka Rios Burrows, Israel Hora, Linda S Geiss, Edward W Gregg, and Ann Albright. Incidence of end-stage renal disease attributed to diabetes among persons with diagnosed diabetes—united states and puerto rico, 2000–2014. <em>Morbidity and Mortality Weekly Report</em>, 66(43):1165, 2017.</p>
-</div>
-<div class="citation" id="id11" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">PVG+11</a><span class="fn-bracket">]</span></span>
-<p>Fabian Pedregosa, Gaël Varoquaux, Alexandre Gramfort, Vincent Michel, Bertrand Thirion, Olivier Grisel, Mathieu Blondel, Peter Prettenhofer, Ron Weiss, Vincent Dubourg, and others. Scikit-learn: machine learning in python. <em>the Journal of machine Learning research</em>, 12:2825–2830, 2011.</p>
-</div>
-<div class="citation" id="id10" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span>SB23<span class="fn-bracket">]</span></span>
-<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id2">2</a>,<a role="doc-backlink" href="#id3">3</a>)</span>
-<p>A. Sapra and P. Bhandari. Diabetes. 2023. [Updated 2023 Jun 21]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2023 Jan-. URL: <a class="reference external" href="https://www.ncbi.nlm.nih.gov/books/NBK551501/">https://www.ncbi.nlm.nih.gov/books/NBK551501/</a>.</p>
-</div>
-<div class="citation" id="id12" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">VGH+18</a><span class="fn-bracket">]</span></span>
-<p>Jacob VanderPlas, Brian Granger, Jeffrey Heer, Dominik Moritz, Kanit Wongsuphasawat, Arvind Satyanarayan, Eitan Lees, Ilia Timofeev, Ben Welsh, and Scott Sievert. Altair: interactive statistical visualizations for python. <em>Journal of open source software</em>, 3(32):1057, 2018.</p>
-</div>
-<div class="citation" id="id14" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">WesMcKinney10</a><span class="fn-bracket">]</span></span>
-<p>Wes McKinney. Data Structures for Statistical Computing in Python. In Stéfan van der Walt and Jarrod Millman, editors, <em>Proceedings of the 9th Python in Science Conference</em>, 56 – 61. 2010. <a class="reference external" href="https://doi.org/10.25080/Majora-92bf1922-00a">doi:10.25080/Majora-92bf1922-00a</a>.</p>
-</div>
-</div>
+<dl class="citation">
+<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id4">BHG+17</a></span></dt>
+<dd><p>Nilka Rios Burrows, Israel Hora, Linda S Geiss, Edward W Gregg, and Ann Albright. Incidence of end-stage renal disease attributed to diabetes among persons with diagnosed diabetes—united states and puerto rico, 2000–2014. <em>Morbidity and Mortality Weekly Report</em>, 66(43):1165, 2017. URL: <a class="reference external" href="https://pubmed.ncbi.nlm.nih.gov/29095800/">https://pubmed.ncbi.nlm.nih.gov/29095800/</a>, <a class="reference external" href="https://doi.org/10.15585/mmwr.mm6643a2">doi:10.15585/mmwr.mm6643a2</a>.</p>
+</dd>
+<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id7">PVG+11</a></span></dt>
+<dd><p>Fabian Pedregosa, Gaël Varoquaux, Alexandre Gramfort, Vincent Michel, Bertrand Thirion, Olivier Grisel, Mathieu Blondel, Peter Prettenhofer, Ron Weiss, Vincent Dubourg, and others. Scikit-learn: machine learning in python. <em>the Journal of machine Learning research</em>, 12:2825–2830, 2011. <a class="reference external" href="https://doi.org/10.5555/1953048.2078195">doi:10.5555/1953048.2078195</a>.</p>
+</dd>
+<dt class="label" id="id10"><span class="brackets">SB23</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id2">2</a>,<a href="#id3">3</a>)</span></dt>
+<dd><p>A. Sapra and P. Bhandari. Diabetes. 2023. [Updated 2023 Jun 21]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2023 Jan-. URL: <a class="reference external" href="https://www.ncbi.nlm.nih.gov/books/NBK551501/">https://www.ncbi.nlm.nih.gov/books/NBK551501/</a>.</p>
+</dd>
+<dt class="label" id="id12"><span class="brackets"><a class="fn-backref" href="#id6">VGH+18</a></span></dt>
+<dd><p>Jacob VanderPlas, Brian Granger, Jeffrey Heer, Dominik Moritz, Kanit Wongsuphasawat, Arvind Satyanarayan, Eitan Lees, Ilia Timofeev, Ben Welsh, and Scott Sievert. Altair: interactive statistical visualizations for python. <em>Journal of open source software</em>, 3(32):1057, 2018. URL: <a class="reference external" href="https://joss.theoj.org/papers/10.21105/joss.01057">https://joss.theoj.org/papers/10.21105/joss.01057</a>, <a class="reference external" href="https://doi.org/10.21105/joss.01057">doi:10.21105/joss.01057</a>.</p>
+</dd>
+<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id5">WesMcKinney10</a></span></dt>
+<dd><p>Wes McKinney. Data Structures for Statistical Computing in Python. In Stéfan van der Walt and Jarrod Millman, editors, <em>Proceedings of the 9th Python in Science Conference</em>, 56 – 61. 2010. <a class="reference external" href="https://doi.org/10.25080/Majora-92bf1922-00a">doi:10.25080/Majora-92bf1922-00a</a>.</p>
+</dd>
+</dl>
 </div>
 </section>
 </section>
