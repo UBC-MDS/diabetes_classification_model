@@ -10,7 +10,7 @@ The project's primary goal is to predict diabetes using healthcare statistics, d
 
 ## Report
 
-For detailed insights and reults, refer to our [final report](https://ubc-mds.github.io/diabetes_classification_model/diabetes_classification_model_report.html).
+For detailed insights and results, refer to our [final report](https://ubc-mds.github.io/diabetes_classification_model/diabetes_classification_model_report.html).
 
 ## Usage
 
@@ -30,13 +30,13 @@ git clone https://github.com/UBC-MDS/diabetes_classification_model.git
 3. To replicate the analysis, run the following command from the root directory of this project:
 
 ``` bash
-docker-compose run --rm jupyter make -C work all
+docker-compose run --rm jupyter make all
 ```
 
 4. To reset the repository to its original clean state, run the following command from the root directory of this project:
 
 ``` bash
-docker-compose run --rm jupyter make -C work clean
+docker-compose run --rm jupyter make clean
 ```
 
 #### Method 2 - Using Virtual Environment:
@@ -124,21 +124,12 @@ Contributions are always welcome but please do refer to [CONTRIBUTING.md](CONTRI
 
 ## References
 
-Centers for Disease Control and Prevention. (2014). CDC Diabetes Health 
-Indicators. University of California, Irvine, School of Information; 
-Computer Sciences. Retrieved November 14, 2023, from 
-https://archive.ics.uci.edu/dataset/891/cdc+diabetes+health+indicators
+Nilka Rios Burrows, Israel Hora, Linda S Geiss, Edward W Gregg, and Ann Albright. Incidence of end-stage renal disease attributed to diabetes among persons with diagnosed diabetes—united states and puerto rico, 2000–2014. Morbidity and Mortality Weekly Report, 66(43):1165, 2017. URL: https://pubmed.ncbi.nlm.nih.gov/29095800/, doi:10.15585/mmwr.mm6643a2.
 
-Sapra, A., & Bhandari, P. (2023, June 21). Diabetes. In StatPearls [Internet].
-Treasure Island (FL): StatPearls Publishing. Available from: 
-https://www.ncbi.nlm.nih.gov/books/NBK551501/
+Fabian Pedregosa, Gaël Varoquaux, Alexandre Gramfort, Vincent Michel, Bertrand Thirion, Olivier Grisel, Mathieu Blondel, Peter Prettenhofer, Ron Weiss, Vincent Dubourg, and others. Scikit-learn: machine learning in python. the Journal of machine Learning research, 12:2825–2830, 2011. doi:10.5555/1953048.2078195.
 
-VanderPlas, J., Granger, B., Heer, J., Moritz, D., Wongsuphasawat,
-K., Satyanarayan, A., ... Sievert, S. (2018). Altair: Interactive statistical
-visualizations for Python. Journal of Open Source Software, 3(32), 1057.
+A. Sapra and P. Bhandari. Diabetes. 2023. [Updated 2023 Jun 21]. In: StatPearls [Internet]. Treasure Island (FL): StatPearls Publishing; 2023 Jan-. URL: https://www.ncbi.nlm.nih.gov/books/NBK551501/.
 
-Pedregosa, F., et al. (2011). Scikit-learn: Machine Learning in Python.
-Journal of Machine Learning Research, 12, 2825-2830.
+Jacob VanderPlas, Brian Granger, Jeffrey Heer, Dominik Moritz, Kanit Wongsuphasawat, Arvind Satyanarayan, Eitan Lees, Ilia Timofeev, Ben Welsh, and Scott Sievert. Altair: interactive statistical visualizations for python. Journal of open source software, 3(32):1057, 2018. URL: https://joss.theoj.org/papers/10.21105/joss.01057, doi:10.21105/joss.01057.
 
-McKinney, W. (2010). Data structures for statistical computing in Python.
-Proceedings of the 9th Python in Science Conference, Volume 445.
+Wes McKinney. Data Structures for Statistical Computing in Python. In Stéfan van der Walt and Jarrod Millman, editors, Proceedings of the 9th Python in Science Conference, 56 – 61. 2010. doi:10.25080/Majora-92bf1922-00a.
