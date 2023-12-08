@@ -26,7 +26,8 @@ sub-directory called "notebooks" for improved project
 organization, addressing concerns about file clutter in the 
 project root. To further streamline the repository, all unnecessary
 files have been removed and the .gitignore was updated to prevent
-any system-generated files from being pushed. 
+any system-generated files from being pushed. We have also updated 
+LICENSE file to include CC BY-NC-ND 4.0 license for our report.
 
 ## Features
 Reproducibility Command: Added a command in/after the 
@@ -64,6 +65,13 @@ References: DOI's were updated for all references, where applicable.
 **Evidence of change:** commit 06cf7341ffd61ea7eff31be464893bba965eec1c
 with the message "fixed the error in the improper table in report"
 
+## License
+CC BY-NC-ND 4.0 License has been included in our LICENSE file 
+on the root repository.
+
+**Evidence of change:** see commit 96512eba24c9de48ef3c4c01d386303bb0c83c3e 
+where pull request #104 where branch build_report was merged to main
+
 ## Other
 README Refinement: Ongoing refinement of the README file, 
 including set-up instructions cleanup and the organization 
@@ -76,7 +84,7 @@ deleted and updated in the gitignore.
 where pull request #96 where branch update-gitignore was merged to main.
 
 Grading Comment Addressed: The analysis notebook is now 
-located in a sub-directory called "notebooks" for improved 
+located in a sub-directory called "archieve" for improved 
 project organization, addressing concerns about file clutter 
 in the project root.
 
