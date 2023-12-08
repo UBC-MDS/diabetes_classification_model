@@ -14,7 +14,8 @@ in testing approaches, specifically removing the if __name__
 all tests. Additionally, a bug affecting the display of 
 Figure 3 has been resolved, now accurately presenting the 
 expected coefficient values. To enhance attribution, author 
-names have been included on the rendered report. Furthermore, 
+names have been included on the rendered report, and DOI's have been
+added for all of the references in the bibligraphy. Furthermore, 
 the README has undergone refinements, encompassing set-up 
 instructions cleanup and the organization of extraneous 
 files. We've responded to user queries by providing a 
@@ -23,7 +24,9 @@ critical aspect of our model, is calculated. The analysis
 notebook (.ipynb or .Qmd or *Rmd) is now located in a 
 sub-directory called "notebooks" for improved project 
 organization, addressing concerns about file clutter in the 
-project root.
+project root. To further streamline the repository, all unnecessary
+files have been removed and the .gitignore was updated to prevent
+any system-generated files from being pushed. 
 
 ## Features
 Reproducibility Command: Added a command in/after the 
@@ -55,10 +58,23 @@ is calculated, acknowledging its importance to the model.
 Summary in README: Enhanced the README with a high-level 
 interpretation of analysis findings, providing 1-2 sentences 
 on their potential implications. 
+
+References: DOI's were updated for all references, where applicable.
+
+**Evidence of change:** commit 06cf7341ffd61ea7eff31be464893bba965eec1c
+with the message "fixed the error in the improper table in report"
+
 ## Other
 README Refinement: Ongoing refinement of the README file, 
 including set-up instructions cleanup and the organization 
 of unnecessary files (e.g., .DS_Store, .Rhistory).
+
+.gitignore Update: All .DS_Store and .Rhistory files have been 
+deleted and updated in the gitignore.
+
+**Evidence of change:** commit 06cf7341ffd61ea7eff31be464893bba965eec1c
+with the message "fixed the error in the improper table in report"
+
 Grading Comment Addressed: The analysis notebook is now 
 located in a sub-directory called "notebooks" for improved 
 project organization, addressing concerns about file clutter 
