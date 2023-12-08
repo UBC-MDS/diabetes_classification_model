@@ -54,10 +54,22 @@ with the message "fixed the error in the improper table in report"
 Author Attribution: Updated the README file to include 
 author names on the rendered report for improved 
 attribution.
+
+Added author names to the report file. 
+**Evidence of change**: commit 3267ca6eb1f7a8b486b916ad2449a801a6a50e7c
+with message "added author names"
+
 General Health Index Explanation: Added a brief summary in 
 the documentation explaining how the general health index 
 is calculated, acknowledging its importance to the model.
-**Evidence of change**: 
+**Evidence of change**: commit c4d7466c8e3e12fad949a868080936ad09ac2738
+with the message "explained gen health index".
+
+We also elaborated on the feature importances, what they mean, and how they may 
+be useful. 
+**Evidence of change**: commit 7d5a55cd1fb5d587d4e963453a46a30f053301d1
+with the message "added more to feature importance".
+
 
 Summary in README: Enhanced the README with a high-level 
 interpretation of analysis findings, providing 1-2 sentences 
