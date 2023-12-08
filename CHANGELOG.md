@@ -61,8 +61,8 @@ on their potential implications.
 
 References: DOI's were updated for all references, where applicable.
 
-**Evidence of change:** commit 06cf7341ffd61ea7eff31be464893bba965eec1c
-with the message "fixed the error in the improper table in report"
+**Evidence of change:** commit e646ab17e989f9fc379bf968899b011257624913
+where pull request #98, branch update-references was merged to main. 
 
 ## Other
 README Refinement: Ongoing refinement of the README file, 
@@ -73,7 +73,7 @@ of unnecessary files (e.g., .DS_Store, .Rhistory).
 deleted and updated in the gitignore.
 
 **Evidence of change:** see commit 9f40aee3e9002bd2be220e224b5b3de1717fe469
-where pull request #96 where branch update-gitignore was merged to main.
+where pull request #96, branch update-gitignore was merged to main.
 
 Grading Comment Addressed: The analysis notebook is now 
 located in a sub-directory called "notebooks" for improved 
