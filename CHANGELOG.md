@@ -39,6 +39,10 @@ test modules.
 Figure Display Issue: Resolved an issue where Figure 3 was 
 incorrectly displaying the same image as Figure 2. The 
 correct coefficient values are now displayed as intended.
+
+**Evidence of change:** commit 06cf7341ffd61ea7eff31be464893bba965eec1c
+with the message "fixed the error in the improper table in report"
+
 ## Documentation
 Author Attribution: Updated the README file to include 
 author names on the rendered report for improved 
@@ -46,6 +50,8 @@ attribution.
 General Health Index Explanation: Added a brief summary in 
 the documentation explaining how the general health index 
 is calculated, acknowledging its importance to the model.
+**Evidence of change**: 
+
 Summary in README: Enhanced the README with a high-level 
 interpretation of analysis findings, providing 1-2 sentences 
 on their potential implications. 
