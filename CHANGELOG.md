@@ -39,6 +39,10 @@ Testing Consistency: Addressed the inconsistency in testing
 approaches. Removed the if __name__ == "main": pytest.main() 
 block to ensure a consistent testing structure across all 
 test modules.
+
+**Evidence of change:** commit 33e593d0b64566cf716166a0e6f403b4b87bf45d
+with the message "fix the test code to be consistent"
+
 Figure Display Issue: Resolved an issue where Figure 3 was 
 incorrectly displaying the same image as Figure 2. The 
 correct coefficient values are now displayed as intended.
