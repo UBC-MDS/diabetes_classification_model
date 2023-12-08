@@ -40,13 +40,14 @@ results/models/tree_model.pickle results/models/knn_pipeline.pickle results/tabl
 	--models_to=results/models \
 	--table_to=results/tables
 
-# # Compare optimized k-nn and decision tree models with logistic regression. 
-# python scripts/model_comparison.py \
-#     --training_data=data/processed/train_df.csv \
-#     --preprocessor=results/models/diabetes_preprocessor.pickle \
-#     --optimized_knn=results/models/knn_pipeline.pickle \
-#     --optimized_tree=results/models/tree_model.pickle \
-#     --table_to=results/tables
+# Compare optimized k-nn and decision tree models with logistic regression. 
+results/tables/model_comparison_results.csv results/tables/feature_importances.csv : scripts/model_comparison.py
+	python src/model_comparison.py \
+	--training_data=data/processed/train_df.csv \
+	--preprocessor=results/models/diabetes_preprocessor.pickle \
+	--optimized_knn=results/models/knn_pipeline.pickle \
+	--optimized_tree=results/models/tree_model.pickle \
+	--table_to=results/tables
 
 # Evaluation and scoring of the model.
 results/tables/confusion_matrix_knn.csv results/tables/confusion_matrix_DT.csv : data/processed/train_df.csv \
