@@ -100,7 +100,7 @@ This project relies on Docker image that is built on quay.io/jupyter/minimal-not
  - vl-convert-python==1.1.0
  - pip install pytest==7.4.3
  - ucimlrepo==0.0.3
- - myst-nb==1.0.0
+ - myst-nb==0.17.2
  - click=8.1.7
  - jupyter-book=0.15.1
  - make=4.3
