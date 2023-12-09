@@ -2,7 +2,7 @@ services:
   jupyter:
     image:  svoon/diabetes_classification_model
     volumes:
-      - .:/home/jovyan/work
+      - .:/home/jovyan
     ports:
       - 8888:8888
     deploy:

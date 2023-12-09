@@ -14,4 +14,4 @@ RUN conda install -y pandas=2.1.3 \
 RUN pip install vl-convert-python==1.1.0 \
     pytest==7.4.3 \
     ucimlrepo==0.0.3 \
-    myst-nb==1.0.0
+    myst-nb==0.17.2

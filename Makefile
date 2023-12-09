@@ -5,32 +5,25 @@
 
 #INSERT A DETSILED DESCRIPTION HERE ABOUT OUR WHOLE PROCESS AFTER WE WRAP UP :)
 
-# example usage:
-# make all
-# make clean
 
 all: report/_build/html/index.html
-
-#PLEASE refer the format of this when you write your makefile if you like:
-#file_to_create_1.png file_to_create_2.png : data_it_depends_on.dat script_it_depends_on.py
-#	python script_it_depends_on.py data_it_depends_on.dat file_to_create
 
 # Download, drop duplicate and split data into train and test data frame
 data/raw/diabetes_raw.csv data/processed/train_df.csv data/processed/test_df.csv : scripts/download_split_data.py
 	python scripts/download_split_data.py \
 	--id=891 \
-    --write-to=data/raw \
-    --random=123 \
-    --split-data-to=data/processed \
-    --split-ratio=0.35
+	--write-to=data/raw \
+	--random=123 \
+	--split-data-to=data/processed \
+	--split-ratio=0.35
 
 # Perform preprocessing train data, EDA, and save plot and results.
 results/models/diabetes_preprocessor.pickle results/figures/feature_histogram_by_class.png : data/processed/train_df.csv scripts/eda.py
 	python scripts/eda.py \
-    --train-data=data/processed/train_df.csv \
-    --preprocessor-to=results/models \
-    --fig-to=results/figures \
-    --table-to=results/tables
+	--train-data=data/processed/train_df.csv \
+	--preprocessor-to=results/models \
+	--fig-to=results/figures \
+	--table-to=results/tables
 
 # # Perform hyperparameter optimization and get the hyperparameters of the optimal models. 
 results/models/tree_model.pickle results/models/knn_pipeline.pickle results/tables/best_hyperparams.csv : scripts/hyperparam_optimization.py data/processed/train_df.csv results/models/diabetes_preprocessor.pickle
@@ -42,7 +35,7 @@ results/models/tree_model.pickle results/models/knn_pipeline.pickle results/tabl
 
 # Compare optimized k-nn and decision tree models with logistic regression. 
 results/tables/model_comparison_results.csv results/tables/feature_importances.csv : scripts/model_comparison.py
-	python src/model_comparison.py \
+	python scripts/model_comparison.py \
 	--training_data=data/processed/train_df.csv \
 	--preprocessor=results/models/diabetes_preprocessor.pickle \
 	--optimized_knn=results/models/knn_pipeline.pickle \
@@ -64,22 +57,26 @@ data/processed/test_df.csv results/models/knn_pipeline.pickle results/models/tre
 report/_build/html/index.html : report/diabetes_classification_model_report.ipynb \
 report/_toc.yml \
 report/_config.yml \
-results/figures/feature_histogram_by_class.png
+results/figures/feature_histogram_by_class.png \
+results/models/diabetes_preprocessor.pickle \
+results/models/tree_model.pickle \
+results/models/knn_pipeline.pickle \
+results/tables/best_hyperparams.csv \
+results/tables/model_comparison_results.csv \
+results/tables/feature_importances.csv \
+results/tables/confusion_matrix_knn.csv \
+results/tables/confusion_matrix_DT.csv
 	jupyter-book build report
 
-#Please make sure you add your clean command too! Thanks!
 
+# Cleaning up resources
 clean:
+	rm -f data/processed/*.csv
+	rm -f data/data/*.csv
 	rm -f results/tables/*.csv
-	rm -f results/data/diabetes_raw.csv
-	rm -f results/data/diabetes_raw.csv
 	rm -f results/processed/*.csv
 	rm -f results/figures/feature_histogram_by_class.png
-	rm -f results/tables/*.csv
 	rm -f results/models/*.pickle
 	rm -f report/_build/html/index.html
-	rm -f results/models/tree_model.pickle
-	rm -f results/models/knn_pipeline.pickle
-	rm -f results/tables/best_hyperparams.csv
 
 
